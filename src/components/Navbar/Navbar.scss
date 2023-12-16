@@ -1,0 +1,41 @@
+@use '../../app/global.scss';
+
+.navbar-container{
+    background-color: global.$navbar-background-color;
+    .navbar{
+        display: flex;
+        justify-content: space-between;
+        margin: 0 5%;
+        height: 60px;
+        align-items: center;
+        .logo{
+            &-colored-part{
+                color: global.$main-color;
+                cursor: pointer;
+            }
+        }
+        .notif-user{
+            width: 50%;
+            display: flex;
+            justify-content: flex-end;
+            color: global.$sec-color;
+            align-items: center;
+            svg{
+                width: 20px;
+                height: 20px;
+                cursor: pointer;
+                &:nth-child(2){
+                    width: 25px;
+                    height: 25px;
+                    padding: 5px;
+                    margin-left: 5%;
+                    border-radius: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: white;
+                }
+            }
+        }
+    }
+}
