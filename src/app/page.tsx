@@ -1,8 +1,8 @@
-import styles from './page.module.css'
+import '../css/global.css'
 
 export default function Home() {
   return (
-    <main className={styles.main}>
+    <main>
       This is the Dashboard
     </main>
   )

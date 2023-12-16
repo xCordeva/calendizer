@@ -1,7 +1,7 @@
-@use '../../app/global.scss';
+@use '../../app/variables.scss';
 
 .navbar-container{
-    background-color: global.$navbar-background-color;
+    background-color: variables.$navbar-background-color;
     .navbar{
         display: flex;
         justify-content: space-between;
@@ -9,8 +9,12 @@
         height: 60px;
         align-items: center;
         .logo{
+            a{
+                color: white;
+                text-decoration: none;
+            }
             &-colored-part{
-                color: global.$main-color;
+                color: variables.$main-color;
                 cursor: pointer;
             }
         }
@@ -18,7 +22,7 @@
             width: 50%;
             display: flex;
             justify-content: flex-end;
-            color: global.$sec-color;
+            color: variables.$sec-color;
             align-items: center;
             svg{
                 width: 20px;
