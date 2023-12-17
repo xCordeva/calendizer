@@ -12,8 +12,13 @@
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@types/moment": "^2.13.0",
+    "@types/react-big-calendar": "^1.8.7",
+    "date-fns": "^2.30.0",
+    "moment": "^2.29.4",
     "next": "14.0.4",
-    "react": "^18",
+    "react": "^18.2.0",
+    "react-big-calendar": "^1.8.5",
     "react-dom": "^18"
   },
   "devDependencies": {
