@@ -1,0 +1,81 @@
+@use 'variables.scss';
+
+.user-signs{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100dvh;
+    position: relative;
+    & > h1{
+        color: white;
+        font-size: 3rem;
+        .logo-colored-part{
+            color: variables.$main-color;
+        }
+    }
+    .sign-box{
+        width: 35%;
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+        background-color: #4B4B4B;
+        width: 100%;
+        margin-top: 10%;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 5px grey;
+        h1{
+            color: white;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        input{
+            padding: 10px;
+            border-radius: 5px;
+            outline: none;
+            border: none;
+            margin: 15px 0;
+            border: 2px solid transparent;
+            &:focus{
+                border: 2px solid variables.$main-color;
+            }
+        }
+        button{
+            background-color: variables.$main-color;
+            padding: 10px;
+            color: white;
+            border-radius: 5px;
+            outline: none;
+            border: none;
+            margin: 15px 0;
+            cursor: pointer;
+            font-weight: 1000;
+            transition: background-color 0.5s ;
+            &:hover{
+                background-color: darken(variables.$main-color, 7.5%);
+            }
+        }
+        a{
+            margin-top: 10px;
+            font-size: 13px;
+            color: #C4C4C4;
+            text-align: center;
+            transition: color 0.3s ;
+            &:hover{
+                color: black;
+            }
+        }
+        // this exist on the signup only
+        .name-section{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            input{
+                width: 47%;
+            }
+        }
+    }
+}
+

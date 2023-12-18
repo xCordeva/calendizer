@@ -1,0 +1,77 @@
+.user-signs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100dvh;
+  position: relative;
+}
+.user-signs > h1 {
+  color: white;
+  font-size: 3rem;
+}
+.user-signs > h1 .logo-colored-part {
+  color: #FF4200;
+}
+.user-signs .sign-box {
+  width: 35%;
+}
+.user-signs form {
+  display: flex;
+  flex-direction: column;
+  background-color: #4B4B4B;
+  width: 100%;
+  margin-top: 10%;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px grey;
+}
+.user-signs form h1 {
+  color: white;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.user-signs form input {
+  padding: 10px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  margin: 15px 0;
+  border: 2px solid transparent;
+}
+.user-signs form input:focus {
+  border: 2px solid #FF4200;
+}
+.user-signs form button {
+  background-color: #FF4200;
+  padding: 10px;
+  color: white;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  margin: 15px 0;
+  cursor: pointer;
+  font-weight: 1000;
+  transition: background-color 0.5s;
+}
+.user-signs form button:hover {
+  background-color: #d93800;
+}
+.user-signs form a {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #C4C4C4;
+  text-align: center;
+  transition: color 0.3s;
+}
+.user-signs form a:hover {
+  color: black;
+}
+.user-signs form .name-section {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.user-signs form .name-section input {
+  width: 47%;
+}/*# sourceMappingURL=Auth.css.map */

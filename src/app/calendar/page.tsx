@@ -1,4 +1,4 @@
-import TheCalendar from "../../components/TheCalendar/TheCalendar"
+import TheCalendar from "../../components/TheCalendar"
 import '../../css/TheCalendar.css'
 
 export default function Calendar() {

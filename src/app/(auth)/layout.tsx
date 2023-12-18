@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import '../css/global.css'
+import '../../css/Auth.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,10 +15,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body>
-          {children}
-      </body>
-    </html>
+      <div className='user-signs'>
+        <h1>Calend<span className='logo-colored-part'>izer</span></h1>
+        {children}
+      </div>
   )
 }
