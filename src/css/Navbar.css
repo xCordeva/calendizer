@@ -29,8 +29,8 @@
   cursor: pointer;
 }
 .navbar-container .navbar .notif-user svg:nth-child(2) {
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   padding: 5px;
   margin-left: 5%;
   border-radius: 50%;
@@ -38,4 +38,37 @@
   justify-content: center;
   align-items: center;
   background-color: white;
+}
+.navbar-container .navbar .nav-signin {
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #FF4200;
+  color: white;
+  border: none;
+  font-weight: 700;
+}
+.navbar-container .popup {
+  position: absolute;
+  background-color: white;
+  right: 5%;
+  padding: 15px;
+  border-radius: 5px;
+  text-align: center;
+}
+.navbar-container .popup hr {
+  margin: 15px 0;
+}
+.navbar-container .popup-user {
+  width: fit-content;
+}
+.navbar-container .popup-user a {
+  text-decoration: none;
+  color: #FF4200;
+}
+.navbar-container .popup-notification {
+  width: 300px;
+}
+.navbar-container .popup-notification h5 {
+  margin: 20px 0;
 }/*# sourceMappingURL=Navbar.css.map */
