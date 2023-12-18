@@ -62,8 +62,12 @@
 .navbar-container .popup-user {
   width: fit-content;
 }
-.navbar-container .popup-user a {
-  text-decoration: none;
+.navbar-container .popup-user button {
+  border: none;
+  background-color: transparent;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
   color: #FF4200;
 }
 .navbar-container .popup-notification {

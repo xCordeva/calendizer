@@ -63,8 +63,12 @@
         }
         &-user{
             width: fit-content;
-            a{
-                text-decoration: none;
+            button{
+                border: none;
+                background-color: transparent;
+                font-size: 15px;
+                font-weight: 700;
+                cursor: pointer;
                 color: variables.$main-color;
             }
         }
