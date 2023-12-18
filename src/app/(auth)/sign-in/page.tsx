@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react';
-import {useSignInWithEmailAndPassword} from 'react-firebase-hooks/auth'
+import {useSignInWithEmailAndPassword, useSignInWithGoogle} from 'react-firebase-hooks/auth'
 import {auth} from '../../../firebase/firebaseConfig'
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -17,7 +17,7 @@ const SignIn = () => {
   const [password, setPassword] = useState('');
   const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
 
-
+  const [incorrect, setIncorrect] = useState(false)
 
 
 
@@ -25,8 +25,8 @@ const SignIn = () => {
     e.preventDefault();
     try {
         const res = await signInWithEmailAndPassword(email, password);
-        // sessionStorage.setItem('user', true)
-        if(res.user.email){
+        localStorage.setItem('user', JSON.stringify(user))
+        if(user.email){
           setEmail('');
           setPassword('');
           console.log('all good')
@@ -35,9 +35,27 @@ const SignIn = () => {
         console.log(res)
     }catch(e){
         console.error(e)
+        setIncorrect(true)
     }
   };
 
+  const [signInWithGoogle] = useSignInWithGoogle(auth);
+  const handleGoogleSignIn = async () => {
+    try {
+      await signInWithGoogle();
+      if(user?.email){
+        setEmail('');
+        setPassword('');
+        console.log('all good')
+        router.push('/')
+      }
+      console.log({user})
+      router.push('/');
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
   return (
       <div className="sign-box">
         <form onSubmit={handleSignIn}>
@@ -56,9 +74,12 @@ const SignIn = () => {
             value={password} 
             onChange={(e) => setPassword(e.target.value)} 
           />
+          <h5 className={incorrect ? `incorrect-signin` : ''}>Email or password is incorrect.</h5>
           <button type="submit">Sign In</button>
-          <Link href='/sign-up'>Sign up</Link>
+
         </form>
+        <button type="button" onClick={handleGoogleSignIn}><img src="https://www.svgrepo.com/show/303108/google-icon-logo.svg" alt="google-icon" />Sign In with Google</button>
+        <Link href='/sign-up'>Sign up</Link>
       </div>
   );
 };

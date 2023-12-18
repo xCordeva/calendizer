@@ -15,35 +15,76 @@
         }
     }
     .sign-box{
-        width: 35%;
-    }
-    form{
         display: flex;
         flex-direction: column;
+        width: 35%;
         background-color: #4B4B4B;
-        width: 100%;
-        margin-top: 10%;
         padding: 20px;
-        border-radius: 10px;
         box-shadow: 0 0 5px grey;
-        h1{
-            color: white;
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        input{
-            padding: 10px;
-            border-radius: 5px;
-            outline: none;
-            border: none;
-            margin: 15px 0;
-            border: 2px solid transparent;
-            &:focus{
-                border: 2px solid variables.$main-color;
+        margin-top: 10%;
+        border-radius: 10px;
+        form{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            h1{
+                color: white;
+                text-align: center;
+                margin-bottom: 10px;
+            }
+            input{
+                padding: 10px;
+                border-radius: 5px;
+                outline: none;
+                border: none;
+                margin: 15px 0;
+                border: 2px solid transparent;
+                &:focus{
+                    border: 2px solid variables.$main-color;
+                }
+            }
+            button{
+                background-color: variables.$main-color;
+                font-weight: 1000;
+                transition: background-color 0.5s ;
+                &:hover{
+                    background-color: darken(variables.$main-color, 7.5%);
+                }
+            }
+            
+            // this exist on the signup only
+            .name-section{
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                input{
+                    width: 47%;
+                }
+            }
+            h5{
+                visibility: hidden;
+                text-align: center;
+                color: red;
+                height: 12px;
+                &.incorrect-signin{
+                    visibility: visible;
+                }
+                &.incorrect-signup{
+                    visibility: visible;
+                }
             }
         }
+        img{
+            width: 25px;
+            margin-right: 20px;
+            background-color: white;
+            border-radius: 50%;
+            padding: 4px;
+        }
         button{
-            background-color: variables.$main-color;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             padding: 10px;
             color: white;
             border-radius: 5px;
@@ -52,9 +93,9 @@
             margin: 15px 0;
             cursor: pointer;
             font-weight: 1000;
-            transition: background-color 0.5s ;
-            &:hover{
-                background-color: darken(variables.$main-color, 7.5%);
+            font-size: 15px;
+            &:nth-child(2){
+                background-color: #4285F4;
             }
         }
         a{
@@ -65,15 +106,6 @@
             transition: color 0.3s ;
             &:hover{
                 color: black;
-            }
-        }
-        // this exist on the signup only
-        .name-section{
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            input{
-                width: 47%;
             }
         }
     }

@@ -1,4 +1,4 @@
-import '../../css/Navbar.css'
+import '../css/Navbar.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faUser } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
