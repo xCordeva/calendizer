@@ -54,11 +54,13 @@
     .popup{
         position: absolute;
         background-color: white;
-        right: 5%;
+        right: 1%;
+        top: 70px;
         padding: 15px;
         border-radius: 5px;
         text-align: center;
         z-index: 99;
+        box-shadow: 0 0 10px grey;
         hr{
             margin: 15px 0;
         }
