@@ -79,7 +79,9 @@ const SignIn = () => {
 
         </form>
         <button type="button" onClick={handleGoogleSignIn}><img src="https://www.svgrepo.com/show/303108/google-icon-logo.svg" alt="google-icon" />Sign In with Google</button>
-        <Link href='/sign-up'>Sign up</Link>
+        <div className='switch'>
+          Not registered?&nbsp;<Link href='/sign-up'>Sign up</Link>
+        </div>
       </div>
   );
 };

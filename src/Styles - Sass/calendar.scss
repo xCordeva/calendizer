@@ -1,0 +1,70 @@
+@use 'variables.scss';
+.rbc-day-bg{
+    background-color: white;
+    &.rbc-off-range-bg{
+        background-color: #7C7C7C;
+        
+    }
+    &.rbc-today{
+        background-color: hsl(0, 0%, 85%);
+    }
+}
+.rbc-off-range{
+    .rbc-button-link{
+        color: white;
+    }
+}
+
+.rbc-header{
+    background-color: white;
+}
+.rbc-toolbar{
+    button{
+        &:active{
+            background-color: #FF4200;
+            color: white;
+        }
+        &:active:focus{
+            background-color: #FF4200;
+            color: white;
+        }
+        &:hover{
+            background-color: #FF4200;
+            color: white;
+        }
+        &.rbc-active{
+            background-color: #FF4200;
+            color: white;
+            &:focus{
+                background-color: #FF4200;  
+                color: white; 
+            }
+            &:hover{
+                background-color: #FF4200;  
+                color: white; 
+            }
+        }
+    }
+}
+
+.rbc-btn-group{
+    button{
+        background-color: white;
+    }
+}
+
+
+@for $i from 1 through 50 {
+    $color-index: $i % length(variables.$events-colors) + 1; 
+    .rbc-row:nth-child(#{$i}) .rbc-row-segment .rbc-event {
+      background-color: nth(variables.$events-colors, $color-index);
+    }
+  }
+
+.rbc-agenda-view, .rbc-time-view{
+    background-color: white;
+    .rbc-agenda-date-cell{
+        border: 1px solid #ddd;
+    }
+}
+

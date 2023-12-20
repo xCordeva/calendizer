@@ -1,6 +1,6 @@
 'use client'
-import TheCalendar from "../../components/TheCalendar"
-import '../../css/TheCalendar.css'
+import TheCalendar from "@/components/TheCalendar"
+import '@/css/calendar.css'
 import Navbar from '@/components/Navbar'
 import  '@/css/global.css'
 import usePopupCloser from '@/Custom Hooks/usePopupCloser'
@@ -13,7 +13,9 @@ export default function Calendar() {
   return (
     <div>
         <Navbar/>
-        <TheCalendar/>
+        <div className="calendar-page-contianer">
+          <TheCalendar/>
+        </div>
       </div>
     
   )

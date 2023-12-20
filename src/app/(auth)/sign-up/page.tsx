@@ -97,9 +97,12 @@ const SignUp = () => {
         <button type="submit">Sign up</button>
       </form>
       <button type="button" onClick={handleGoogleSignUp}><img src="https://www.svgrepo.com/show/303108/google-icon-logo.svg" alt="google-icon" />Sign Up with Google</button>
-      <Link href='/sign-in'>Sign in</Link>
+      <div className='switch'>
+        Already have an account?&nbsp;<Link href='/sign-in'> Sign in</Link>
+      </div>
     </div>
   );
 };
 
-export default SignUp;
+export default SignUp; 
+
