@@ -1,0 +1,25 @@
+.calendar-page-contianer{
+    display: flex;
+    justify-content: space-between;
+    .sidebar{
+        width: fit-content;
+        display: flex;
+        flex-direction: column;
+        a{
+            text-decoration: none;
+            color: black;
+            font-weight: 1000;
+            padding:5px 10px;
+            margin: 10px;
+            cursor: pointer;
+            &:hover, &.active{
+                background-color: #FF4200;
+                border-radius: 3px;
+                box-shadow: 0 0 10px grey;
+            }
+        }
+    }
+    .the-calendar{
+        width: 90%;
+    }
+}
