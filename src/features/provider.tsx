@@ -2,6 +2,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import UserPopupReducer from '../features/UserPopup';
 import NotificationPopupReducer from '../features/NotificationPopup';
+import EventPopupReducer from '../features/EventPopup';
+import refetchEventsReducer from '../features/RefetchEvents';
 import { Provider } from 'react-redux';
 
 
@@ -9,6 +11,8 @@ const store = configureStore({
     reducer: {
       UserPopup: UserPopupReducer,
       NotificationPopup: NotificationPopupReducer,
+      EventPopup: EventPopupReducer,
+      RefetchEvents: refetchEventsReducer,
     },
 });
 
