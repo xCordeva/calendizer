@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { auth, db } from '@/firebase/firebaseConfig';
-import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
+import { addDoc, collection, getDocs, query, where, orderBy } from 'firebase/firestore';
 import { useSelector } from 'react-redux';
 
 
@@ -30,7 +30,11 @@ const useFetchEvents = () => {
         return;
       }
 
-      const q = query(collection(db, 'events'), where('userId', '==', uid));
+      const q = query(
+        collection(db, 'events'),
+        where('userId', '==', uid),
+        orderBy('highPriority', 'desc') 
+      );
       const querySnapshot = await getDocs(q);
       const eventsData = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
       setEvents(eventsData);

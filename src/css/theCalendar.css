@@ -2,20 +2,24 @@
   background-color: white;
 }
 .rbc-day-bg.rbc-off-range-bg {
-  background-color: #7C7C7C;
+  background-color: hsl(0, 0%, 85%);
+  border: 1px solid hsl(0, 0%, 80%);
 }
 .rbc-day-bg.rbc-today {
-  background-color: hsl(0, 0%, 85%);
+  background-color: hsl(46, 100%, 90%);
 }
 
 .rbc-off-range .rbc-button-link {
-  color: white;
+  color: black;
 }
 
 .rbc-header {
   background-color: white;
 }
 
+.rbc-toolbar button {
+  cursor: pointer;
+}
 .rbc-toolbar button:active {
   background-color: #FF4200;
   color: white;
