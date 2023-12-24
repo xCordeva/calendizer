@@ -19,7 +19,7 @@
   cursor: pointer;
 }
 .calendar-page .calendar-page-contianer .sidebar a:hover, .calendar-page .calendar-page-contianer .sidebar a.active {
-  background-color: #FF4200;
+  background-color: #ff4200;
   border-radius: 3px;
   box-shadow: 0 0 10px grey;
 }
@@ -71,14 +71,16 @@
 .calendar-page .calendar-page-contianer .popup-event .add-event .label-container .label-icon svg {
   margin-right: 10px;
 }
-.calendar-page .calendar-page-contianer .popup-event .add-event .label-container input:nth-child(2), .calendar-page .calendar-page-contianer .popup-event .add-event .label-container textarea {
+.calendar-page .calendar-page-contianer .popup-event .add-event .label-container input:nth-child(2),
+.calendar-page .calendar-page-contianer .popup-event .add-event .label-container textarea {
   margin-left: 30px;
   padding: 10px;
   border-radius: 5px;
   outline: none;
   resize: vertical;
 }
-.calendar-page .calendar-page-contianer .popup-event .add-event .label-container input:nth-child(2):focus, .calendar-page .calendar-page-contianer .popup-event .add-event .label-container textarea:focus {
+.calendar-page .calendar-page-contianer .popup-event .add-event .label-container input:nth-child(2):focus,
+.calendar-page .calendar-page-contianer .popup-event .add-event .label-container textarea:focus {
   border: 2px solid #FF4200;
 }
 .calendar-page .calendar-page-contianer .popup-event .add-event .label-container .time-details {
@@ -103,18 +105,88 @@
 .calendar-page .calendar-page-contianer .popup-event .add-event .label-container .time-details .choose-time {
   width: 135px;
 }
-.calendar-page .calendar-page-contianer .popup-event button:nth-child(5) {
+.calendar-page .calendar-page-contianer .popup-event .events-button {
   cursor: pointer;
-  float: right;
   padding: 10px;
-  background-color: #FF4200;
   border: none;
   border-radius: 5px;
   width: fit-content;
+  min-width: 60px;
   font-size: 20px;
   color: white;
   font-weight: 700;
 }
-.calendar-page .calendar-page-contianer .popup-event button:nth-child(5) svg {
+.calendar-page .calendar-page-contianer .popup-event .events-button svg {
   margin-left: 15px;
+}
+.calendar-page .calendar-page-contianer .popup-event .save-button {
+  float: right;
+  background-color: #ff4200;
+}
+.calendar-page .calendar-page-contianer .popup-event .delete-button {
+  float: left;
+  background-color: black;
+}
+.calendar-page .calendar-page-contianer .popup-event .confrim-delete {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  height: 100%;
+  width: 100%;
+  background-color: hsla(0, 0%, 0%, 0.5);
+  z-index: 99;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.calendar-page .calendar-page-contianer .popup-event .confrim-delete .confrim-delete-popup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: white;
+}
+.calendar-page .calendar-page-contianer .popup-event .confrim-delete .confrim-delete-popup p {
+  margin: 10px;
+}
+.calendar-page .calendar-page-contianer .popup-event .confrim-delete .confrim-delete-popup .no-button {
+  background-color: #33b864;
+  margin: 10px 20px;
+}
+.calendar-page .calendar-page-contianer .popup-event .confrim-delete .confrim-delete-popup .yes-button {
+  background-color: #ff003f;
+  margin: 10px 20px;
+}
+.calendar-page .calendar-page-contianer .popup-event .error-message {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  height: 100%;
+  width: 100%;
+  background-color: hsla(0, 0%, 0%, 0.5);
+  z-index: 99;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.calendar-page .calendar-page-contianer .popup-event .error-message .error-message-popup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: white;
+}
+.calendar-page .calendar-page-contianer .popup-event .error-message .error-message-popup p {
+  margin: 10px;
+  font-size: 18px;
+  text-align: center;
+}
+.calendar-page .calendar-page-contianer .popup-event .error-message .error-message-popup button {
+  background-color: #33b864;
+  margin: 10px 20px;
+  font-size: 15px;
 }/*# sourceMappingURL=calendarPage.css.map */

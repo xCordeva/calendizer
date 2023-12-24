@@ -1,125 +1,196 @@
-@use 'variables.scss';
+@use "variables.scss";
 
-.calendar-page{
-    position: relative;
-    .calendar-page-contianer{
-        display: flex;
-        justify-content: space-between;
-        .sidebar{
-            width: fit-content;
-            display: flex;
-            flex-direction: column;
-            a{
-                text-decoration: none;
-                color: black;
-                font-weight: 1000;
-                padding:5px 10px;
-                margin: 10px;
-                cursor: pointer;
-                &:hover, &.active{
-                    background-color: #FF4200;
-                    border-radius: 3px;
-                    box-shadow: 0 0 10px grey;
-                }
-            }
+.calendar-page {
+  position: relative;
+  .calendar-page-contianer {
+    display: flex;
+    justify-content: space-between;
+    .sidebar {
+      width: fit-content;
+      display: flex;
+      flex-direction: column;
+      a {
+        text-decoration: none;
+        color: black;
+        font-weight: 1000;
+        padding: 5px 10px;
+        margin: 10px;
+        cursor: pointer;
+        &:hover,
+        &.active {
+          background-color: #ff4200;
+          border-radius: 3px;
+          box-shadow: 0 0 10px grey;
         }
-        .the-calendar{
-            width: 90%;
-        }
-        .popup-event{
-            // if this class exist it removes the popup
-            &.close-event-popup{
-                display: none;
-            }
-            position: absolute;
-            top: 0%;
-            left: 0%;
-            height: 100%;
-            width: 100%;
-            background-color: hsla(0, 0%, 0%, 0.5);
-            z-index: 99;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            .add-event{
-                background-color: white;
-                padding: 30px;
-                width: fit-content;
-                min-width: 455px;
-                position: relative;
-                border-radius: 10px;
-                .close-icon{
-                    font-size: 20px;
-                    position: absolute;
-                    top: 3%;
-                    right: 3%;
-                    cursor: pointer;
-                }
-                .label-container{
-                    display: flex;
-                    flex-direction: column;
-                    margin-bottom: 20px;
-                    .label-icon{
-                        position: relative;
-                        font-size: 20px;
-                        display: flex;
-                        align-items: center;
-                        margin-bottom: 5px;
-                        svg{
-                            margin-right: 10px;
-                        }
-                    }
-                    input:nth-child(2),textarea{
-                        margin-left: 30px;
-                        padding: 10px;
-                        border-radius: 5px;
-                        outline: none;
-                        resize: vertical;
-                        &:focus{
-                            border: 2px solid variables.$main-color;
-                        }
-                    }
-                    .time-details{
-                        margin:0 0 10px 30px;
-                        display: flex;
-                        align-items: center;
-                        .date-time{
-                            width: 100%;
-                            display: flex;
-                            justify-content: space-between;
-                        }
-                        label{
-                            margin-right: 5px;
-                            width: 60px;
-                            display: inline-block;
-                        }
-                        input{
-                            width: 105px;
-                            padding:6px 0 6px 10px;
-                        }
-                        .choose-time{
-                            width: 135px;
-                        }
-                        
-                    }
-                }
-            }
-            button:nth-child(5){
-                cursor: pointer;
-                float: right;
-                padding: 10px;
-                background-color: #FF4200;
-                border: none;
-                border-radius: 5px;
-                width: fit-content;
-                font-size: 20px;
-                color: white;
-                font-weight: 700;
-                svg{
-                    margin-left: 15px;
-                }
-            }
-        }
+      }
     }
-    
+    .the-calendar {
+      width: 90%;
+    }
+    .popup-event {
+      // if this class exist it removes the popup
+      &.close-event-popup {
+        display: none;
+      }
+      position: absolute;
+      top: 0%;
+      left: 0%;
+      height: 100%;
+      width: 100%;
+      background-color: hsla(0, 0%, 0%, 0.5);
+      z-index: 99;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .add-event {
+        background-color: white;
+        padding: 30px;
+        width: fit-content;
+        min-width: 455px;
+        position: relative;
+        border-radius: 10px;
+        .close-icon {
+          font-size: 20px;
+          position: absolute;
+          top: 3%;
+          right: 3%;
+          cursor: pointer;
+        }
+        .label-container {
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 20px;
+          .label-icon {
+            position: relative;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+            svg {
+              margin-right: 10px;
+            }
+          }
+          input:nth-child(2),
+          textarea {
+            margin-left: 30px;
+            padding: 10px;
+            border-radius: 5px;
+            outline: none;
+            resize: vertical;
+            &:focus {
+              border: 2px solid variables.$main-color;
+            }
+          }
+          .time-details {
+            margin: 0 0 10px 30px;
+            display: flex;
+            align-items: center;
+            .date-time {
+              width: 100%;
+              display: flex;
+              justify-content: space-between;
+            }
+            label {
+              margin-right: 5px;
+              width: 60px;
+              display: inline-block;
+            }
+            input {
+              width: 105px;
+              padding: 6px 0 6px 10px;
+            }
+            .choose-time {
+              width: 135px;
+            }
+          }
+        }
+      }
+      .events-button {
+        cursor: pointer;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        width: fit-content;
+        min-width: 60px;
+        font-size: 20px;
+        color: white;
+        font-weight: 700;
+        svg {
+          margin-left: 15px;
+        }
+      }
+      .save-button {
+        float: right;
+        background-color: #ff4200;
+      }
+      .delete-button {
+        float: left;
+        background-color: black;
+      }
+
+      .confrim-delete {
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        height: 100%;
+        width: 100%;
+        background-color: hsla(0, 0%, 0%, 0.5);
+        z-index: 99;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .confrim-delete-popup {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          padding: 20px;
+          border-radius: 5px;
+          background-color: white;
+          p {
+            margin: 10px;
+          }
+          .no-button {
+            background-color: #33b864;
+            margin: 10px 20px;
+          }
+          .yes-button {
+            background-color: #ff003f;
+            margin: 10px 20px;
+          }
+        }
+      }
+      .error-message {
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        height: 100%;
+        width: 100%;
+        background-color: hsla(0, 0%, 0%, 0.5);
+        z-index: 99;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .error-message-popup {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          padding: 20px;
+          border-radius: 5px;
+          background-color: white;
+          p {
+            margin: 10px;
+            font-size: 18px;
+            text-align: center;
+          }
+          button {
+            background-color: #33b864;
+            margin: 10px 20px;
+            font-size: 15px;
+          }
+        }
+      }
+    }
+  }
 }
