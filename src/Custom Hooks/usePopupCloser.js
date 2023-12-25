@@ -6,6 +6,8 @@ import { closeUserPopup } from "../features/UserPopup";
 import { closeNotificationPopup } from "@/features/NotificationPopup";
 import { auth } from "../firebase/firebaseConfig";
 import { closeSmallEditEventPopup } from "@/features/SmallEditEventPopup";
+import { closeEditEvent } from "@/features/EditEvent";
+import { closeEventPopup } from "@/features/EventPopup";
 
 const usePopupCloser = () => {
   const [user] = useAuthState(auth);
@@ -36,11 +38,24 @@ const usePopupCloser = () => {
     }
   };
 
+  const handleKeyDown = (event) => {
+    // Check if the pressed key is the Esc key
+    if (event.key === "Escape") {
+      dispatch(closeUserPopup(false));
+      dispatch(closeNotificationPopup(false));
+      dispatch(closeSmallEditEventPopup());
+      dispatch(closeEditEvent());
+      dispatch(closeEventPopup());
+    }
+  };
+
   useEffect(() => {
     document.body.addEventListener("click", handleBodyClick);
+    document.body.addEventListener("keydown", handleKeyDown);
 
     return () => {
       document.body.removeEventListener("click", handleBodyClick);
+      document.body.removeEventListener("keydown", handleKeyDown);
     };
   }, [userPopupOpen, notificationPopupOpen, smallEditEventPopup]);
 };
