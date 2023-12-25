@@ -26,14 +26,54 @@
     }
     .the-calendar {
       width: 90%;
-      .hover-event {
+      .edit-event-popup {
         position: absolute;
         background-color: white;
-        padding: 10px;
+        padding: 30px 10px 10px 10px;
         border-radius: 4px;
         width: 300px;
         z-index: 99;
         box-shadow: 0 0 10px grey;
+        .edit-icons {
+          margin-right: 10px;
+        }
+        .events-button {
+          cursor: pointer;
+          padding: 5px;
+          width: fit-content;
+          min-width: 60px;
+          font-size: 18px;
+          color: white;
+          font-weight: 700;
+          svg {
+            margin-left: 10px;
+          }
+        }
+        .close-icon {
+          font-size: 16px;
+          cursor: pointer;
+          position: absolute;
+          top: 3%;
+          right: 3%;
+        }
+        .edit-event-popup-buttons {
+          display: flex;
+          justify-content: space-between;
+        }
+        .edit-button {
+          background-color: #ff9001;
+        }
+        .delete-button {
+          background-color: black;
+        }
+      }
+      h3 {
+        text-align: center;
+        margin: 5px 0;
+      }
+      p {
+        font-size: 17px;
+        margin: 5px 0;
       }
     }
     .popup-event {
@@ -114,20 +154,6 @@
           }
         }
       }
-      .events-button {
-        cursor: pointer;
-        padding: 10px;
-        border: none;
-        border-radius: 5px;
-        width: fit-content;
-        min-width: 60px;
-        font-size: 20px;
-        color: white;
-        font-weight: 700;
-        svg {
-          margin-left: 15px;
-        }
-      }
       .save-button {
         float: right;
         background-color: #ff4200;
@@ -137,38 +163,6 @@
         background-color: black;
       }
 
-      .confrim-delete {
-        position: absolute;
-        top: 0%;
-        left: 0%;
-        height: 100%;
-        width: 100%;
-        background-color: hsla(0, 0%, 0%, 0.5);
-        z-index: 99;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        .confrim-delete-popup {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          padding: 20px;
-          border-radius: 5px;
-          background-color: white;
-          p {
-            margin: 10px;
-          }
-          .no-button {
-            background-color: #33b864;
-            margin: 10px 20px;
-          }
-          .yes-button {
-            background-color: #ff003f;
-            margin: 10px 20px;
-          }
-        }
-      }
       .error-message {
         position: absolute;
         top: 0%;
@@ -198,6 +192,52 @@
             margin: 10px 20px;
             font-size: 15px;
           }
+        }
+      }
+    }
+    .events-button {
+      cursor: pointer;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      width: fit-content;
+      min-width: 60px;
+      font-size: 20px;
+      color: white;
+      font-weight: 700;
+      svg {
+        margin-left: 15px;
+      }
+    }
+    .confrim-delete {
+      position: absolute;
+      top: 0%;
+      left: 0%;
+      height: 100%;
+      width: 100%;
+      background-color: hsla(0, 0%, 0%, 0.5);
+      z-index: 999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .confrim-delete-popup {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        border-radius: 5px;
+        background-color: white;
+        p {
+          margin: 10px;
+        }
+        .no-button {
+          background-color: #33b864;
+          margin: 10px 20px;
+        }
+        .yes-button {
+          background-color: #ff003f;
+          margin: 10px 20px;
         }
       }
     }

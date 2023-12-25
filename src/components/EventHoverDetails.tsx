@@ -1,16 +1,33 @@
-import { useRef, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useRef, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faXmark,
+  faClock,
+  faTriangleExclamation,
+  faCalendar,
+  faPenToSquare,
+  faTrash,
+  faCheck,
+} from "@fortawesome/free-solid-svg-icons";
+import { openEditEvent } from "@/features/EditEvent";
+import { closeSmallEditEventPopup } from "@/features/SmallEditEventPopup";
+import useFetchEvents from "@/Custom Hooks/useFetchEvents";
+import { triggerRefetch } from "@/features/RefetchEvents";
 
-export default function EventHoverDetails({ mousePosition }) {
+export default function EventHoverDetails({ popupPosition }) {
+  const dispatch = useDispatch();
   const hoverDivRef = useRef(null);
-  const hoveredEventData = useSelector((state) => state.HoverEvent.value);
+  const clickedEventData = useSelector(
+    (state) => state.SmallEditEventPopup.value
+  );
 
-  const { start, end, timestamp, ...others } = hoveredEventData;
+  const { start, end, timestamp, ...others } = clickedEventData;
 
   let formattedStart = start;
   let formattedEnd = end;
 
-  if (hoveredEventData.allDay) {
+  if (clickedEventData.allDay) {
     formattedStart = new Date(start).toLocaleDateString("en-US", {
       month: "short",
       day: "numeric",
@@ -43,22 +60,125 @@ export default function EventHoverDetails({ mousePosition }) {
   useEffect(() => {
     // Check if the ref is not null before accessing its properties
     if (hoverDivRef.current) {
-      const top = mousePosition.y + 10;
-      const left = mousePosition.x + 10;
-
-      hoverDivRef.current.style.top = top - 1050 + "px";
-      hoverDivRef.current.style.left = left - 300 + "px";
+      hoverDivRef.current.style.top = popupPosition.top + "px";
+      hoverDivRef.current.style.left = popupPosition.left + "px";
     }
-  }, [mousePosition]);
+  }, [popupPosition]);
 
+  const handleEventSelect = () => {
+    // Dispatch the action with the updated event
+    dispatch(openEditEvent(updatedEvent));
+    dispatch(closeSmallEditEventPopup());
+  };
+
+  const refetchEvents = useSelector((state) => state.RefetchEvents.value);
+
+  const { deleteEvent } = useFetchEvents();
+
+  const handleDeleteEvent = () => {
+    if (clickedEventData) {
+      console.log(clickedEventData.id);
+      deleteEvent(clickedEventData.id);
+      dispatch(triggerRefetch(!refetchEvents));
+      dispatch(closeSmallEditEventPopup());
+      toggleConfrimDelete();
+    }
+  };
+
+  const [confrimDelete, setConfrimDelete] = useState(false);
+  const toggleConfrimDelete = () => {
+    setConfrimDelete(!confrimDelete);
+  };
   return (
-    <div ref={hoverDivRef} className="hover-event">
-      <h3>{updatedEvent.title}</h3>
-      <p>{updatedEvent.description}</p>
-      <p>{updatedEvent.start}</p>
-      <p>{updatedEvent.end}</p>
-      <p>{updatedEvent.highPriority}</p>
-      <p>Created At: {updatedEvent.timestamp}</p>
+    <div>
+      {confrimDelete && (
+        <div className="confrim-delete">
+          <div className="confrim-delete-popup">
+            <h2>Are you sure you want to delete this ?</h2>
+            <p>This action can't be undone</p>
+            <div>
+              <button
+                className="events-button yes-button"
+                onClick={handleDeleteEvent}
+              >
+                Yes
+                <FontAwesomeIcon icon={faCheck} />
+              </button>
+              <button
+                className="events-button no-button"
+                onClick={toggleConfrimDelete}
+              >
+                No
+                <FontAwesomeIcon icon={faXmark} />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div ref={hoverDivRef} className="edit-event-popup popup">
+        <FontAwesomeIcon
+          icon={faXmark}
+          className="close-icon"
+          onClick={() => {
+            dispatch(closeSmallEditEventPopup());
+          }}
+        />
+        <div className="edit-event-popup-buttons">
+          <button
+            onClick={handleEventSelect}
+            className="events-button edit-button"
+          >
+            Edit
+            <FontAwesomeIcon icon={faPenToSquare} />
+          </button>
+          <button
+            className="events-button delete-button"
+            onClick={toggleConfrimDelete}
+          >
+            Delete
+            <FontAwesomeIcon icon={faTrash} />
+          </button>
+        </div>
+        <h3>{updatedEvent.title}</h3>
+        <p>
+          {updatedEvent.highPriority ? (
+            <>
+              {
+                <FontAwesomeIcon
+                  icon={faTriangleExclamation}
+                  style={{ color: "red" }}
+                  className="edit-icons"
+                />
+              }
+              <strong>High Priority</strong>
+            </>
+          ) : (
+            ""
+          )}
+        </p>
+        <p>
+          <FontAwesomeIcon
+            icon={faClock}
+            style={{ color: "#33b864" }}
+            className="edit-icons"
+          />
+          {updatedEvent.start}
+        </p>
+        <p>
+          <FontAwesomeIcon
+            icon={faClock}
+            style={{ color: "#ff003f" }}
+            className="edit-icons"
+          />
+          {updatedEvent.end}
+        </p>
+
+        <p>
+          <FontAwesomeIcon icon={faCalendar} className="edit-icons" />
+          <strong>Created At:</strong> {updatedEvent.timestamp}
+        </p>
+      </div>
     </div>
   );
 }
