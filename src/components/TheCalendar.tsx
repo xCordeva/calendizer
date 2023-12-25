@@ -12,6 +12,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { openEventPopup } from "@/features/EventPopup";
 import useFetchEvents from "@/Custom Hooks/useFetchEvents";
 import { openEditEvent } from "@/features/EditEvent";
+import CustomEventWrapper from "./CustomEventWrapper";
+import EventHoverDetails from "./EventHoverDetails";
 
 const locales = {
   "en-US": enUS,
@@ -97,8 +99,22 @@ export default function MyCalendar() {
     dispatch(openEventPopup(formattedDate));
   };
 
+  const components = {
+    eventWrapper: CustomEventWrapper, // Use the custom event wrapper
+  };
+
+  const hoverdEventData = useSelector((state) => state.HoverEvent.value);
+
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e) => {
+    setMousePosition({ x: e.clientX, y: e.clientY });
+  };
+  const handleMouseOut = () => {
+    console.log(`updatedEvent`);
+  };
   return (
-    <div className="the-calendar">
+    <div className="the-calendar" onMouseMove={handleMouseMove}>
       <Calendar
         localizer={localizer}
         events={events}
@@ -108,7 +124,13 @@ export default function MyCalendar() {
         selectable={true}
         onSelectSlot={handleDayClick}
         onSelectEvent={handleEventSelect}
+        // components={{
+        //   eventWrapper: (props) => <CustomEventWrapper {...props} />,
+        // }}
       />
+      {/* <div className="hover-event">
+        {hoverdEventData && <EventHoverDetails mousePosition={mousePosition} />}
+      </div> */}
     </div>
   );
 }

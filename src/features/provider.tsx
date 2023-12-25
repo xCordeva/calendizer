@@ -5,6 +5,7 @@ import NotificationPopupReducer from "../features/NotificationPopup";
 import EventPopupReducer from "../features/EventPopup";
 import RefetchEventsReducer from "../features/RefetchEvents";
 import EditEventReducer from "../features/EditEvent";
+import HoverEventReducer from "../features/HoverEvent";
 import { Provider } from "react-redux";
 
 const store = configureStore({
@@ -14,6 +15,7 @@ const store = configureStore({
     EventPopup: EventPopupReducer,
     RefetchEvents: RefetchEventsReducer,
     EditEvent: EditEventReducer,
+    HoverEvent: HoverEventReducer,
   },
 });
 
