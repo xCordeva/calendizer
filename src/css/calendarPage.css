@@ -25,6 +25,7 @@
 }
 .calendar-page .calendar-page-contianer .the-calendar {
   width: 90%;
+  height: calc(100dvh - 60px);
 }
 .calendar-page .calendar-page-contianer .the-calendar .edit-event-popup {
   position: absolute;

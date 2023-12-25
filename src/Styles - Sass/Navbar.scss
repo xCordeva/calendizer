@@ -1,85 +1,85 @@
-@use 'variables.scss';
+@use "variables.scss";
 
-.navbar-container{
-    background-color: variables.$navbar-background-color;
-    .navbar{
-        display: flex;
-        justify-content: space-between;
-        margin: 0 5%;
-        height: 60px;
-        align-items: center;
-        .logo{
-            a{
-                color: white;
-                text-decoration: none;
-            }
-            &-colored-part{
-                color: variables.$main-color;
-                cursor: pointer;
-            }
-        }
-        .notif-user{
-            width: 50%;
-            display: flex;
-            justify-content: flex-end;
-            color: variables.$sec-color;
-            align-items: center;
-            svg{
-                width: 20px;
-                height: 20px;
-                cursor: pointer;
-                &:nth-child(2){
-                    width: 20px;
-                    height: 20px;
-                    padding: 5px;
-                    margin-left: 5%;
-                    border-radius: 50%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    background-color: white;
-                }
-            }
-        }
-        .nav-signin{
-            text-decoration: none;
-            padding: 10px;
-            border-radius: 5px;
-            background-color: variables.$main-color;
-            color: white;
-            border: none;
-            font-weight: 700;
-        }
+.navbar-container {
+  background-color: variables.$navbar-background-color;
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 5%;
+    height: 60px;
+    align-items: center;
+    .logo {
+      a {
+        color: white;
+        text-decoration: none;
+      }
+      &-colored-part {
+        color: variables.$main-color;
+        cursor: pointer;
+      }
     }
-    .popup{
-        position: absolute;
-        background-color: white;
-        right: 1%;
-        top: 70px;
-        padding: 15px;
-        border-radius: 5px;
-        text-align: center;
-        z-index: 99;
-        box-shadow: 0 0 10px grey;
-        hr{
-            margin: 15px 0;
+    .notif-user {
+      width: 50%;
+      display: flex;
+      justify-content: flex-end;
+      color: variables.$sec-color;
+      align-items: center;
+      svg {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        &:nth-child(2) {
+          width: 20px;
+          height: 20px;
+          padding: 5px;
+          margin-left: 5%;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: white;
         }
-        &-user{
-            width: fit-content;
-            button{
-                border: none;
-                background-color: transparent;
-                font-size: 15px;
-                font-weight: 700;
-                cursor: pointer;
-                color: variables.$main-color;
-            }
-        }
-        &-notification{
-            width: 300px;
-            h5{
-                margin: 20px 0;
-            }
-        }
+      }
     }
+    .nav-signin {
+      text-decoration: none;
+      padding: 10px;
+      border-radius: 5px;
+      background-color: variables.$main-color;
+      color: white;
+      border: none;
+      font-weight: 700;
+    }
+  }
+  .popup {
+    position: absolute;
+    background-color: white;
+    right: 1%;
+    top: 70px;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    z-index: 99;
+    box-shadow: 0 0 10px grey;
+    hr {
+      margin: 15px 0;
+    }
+    &-user {
+      width: fit-content;
+      button {
+        border: none;
+        background-color: transparent;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+        color: variables.$main-color;
+      }
+    }
+    &-notification {
+      width: 300px;
+      h5 {
+        margin: 20px 0;
+      }
+    }
+  }
 }

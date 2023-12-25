@@ -123,7 +123,6 @@ export default function MyCalendar() {
         events={events}
         startAccessor="start"
         endAccessor="end"
-        style={{ height: "91dvh" }}
         selectable={true}
         onSelectSlot={handleDayClick}
         onSelectEvent={handleEventClick}

@@ -26,6 +26,7 @@
     }
     .the-calendar {
       width: 90%;
+      height: calc(100dvh - 60px);
       .edit-event-popup {
         position: absolute;
         background-color: white;
