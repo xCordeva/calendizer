@@ -113,7 +113,7 @@
 }
 .calendar-page .calendar-page-contianer .popup-event .add-event .label-container input:nth-child(2):focus,
 .calendar-page .calendar-page-contianer .popup-event .add-event .label-container textarea:focus {
-  border: 2px solid #FF4200;
+  border: 2px solid #ff4200;
 }
 .calendar-page .calendar-page-contianer .popup-event .add-event .label-container .time-details {
   margin: 0 0 10px 30px;

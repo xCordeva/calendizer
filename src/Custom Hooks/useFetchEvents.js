@@ -41,8 +41,7 @@ const useFetchEvents = () => {
       const q = query(
         collection(db, "events"),
         where("userId", "==", uid),
-        orderBy("highPriority", "desc"),
-        orderBy("pinned")
+        orderBy("highPriority", "desc")
       );
       const querySnapshot = await getDocs(q);
       const eventsData = querySnapshot.docs.map((doc) => ({

@@ -5,6 +5,7 @@ import {
   faThumbTack,
   faPen,
   faTrashCan,
+  faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import Checkbox from "@mui/material/Checkbox";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd"; // this was "react-beautiful-dnd" at first but since the library is no longer maintained i used this forked edited one with up-to-date dependencies.
@@ -17,7 +18,7 @@ export default function TodoList() {
   const dispatch = useDispatch();
   const refetchTodos = useSelector((state) => state.RefetchTodos.value);
   const { addTodo, deleteTodo, editTodo, todos } = useFetchTodo();
-
+  // this works when the dragging ends
   const onDragEnd = (result) => {
     if (!result.destination) {
       return;
@@ -26,7 +27,6 @@ export default function TodoList() {
     const reorderedItems = Array.from(todos);
     const [movedItem] = reorderedItems.splice(result.source.index, 1);
     reorderedItems.splice(result.destination.index, 0, movedItem);
-    console.log(todos);
     // Update the order field based on the new index
     const updatedOrder = reorderedItems.map((item, index) => ({
       ...item,
@@ -39,7 +39,6 @@ export default function TodoList() {
       editTodo(rest, id);
     });
     dispatch(triggerRefetch(!refetchTodos));
-    console.log(updatedOrder);
   };
 
   const [newTodoTitle, setNewTodoTitle] = useState("");
@@ -56,23 +55,45 @@ export default function TodoList() {
     dispatch(triggerRefetch(!refetchTodos));
     setNewTodoTitle("");
   };
-  const deleteTodoItem = (todoItemId) => {
+  const deleteTodoItem = async (todoItemId) => {
     deleteTodo(todoItemId);
     dispatch(triggerRefetch(!refetchTodos));
   };
-  const pinTodoItem = (item) => {
+  const pinTodoItem = async (item) => {
     const newItem = {
       ...item,
-      pinned: true,
+      pinned: !item.pinned,
     };
-    editTodo(newItem, item.id);
+    await editTodo(newItem, item.id);
     dispatch(triggerRefetch(!refetchTodos));
-    console.log(todos);
   };
 
+  const changeTaskToDone = async (item) => {
+    const newItem = {
+      ...item,
+      done: !item.done,
+    };
+    await editTodo(newItem, item.id);
+    dispatch(triggerRefetch(!refetchTodos));
+  };
+
+  const [editItemClicked, setEditItemClicked] = useState("");
+  const [editedTodoTitle, setEditedTodoTitle] = useState("");
+  const toggleEditItem = (item) => {
+    setEditItemClicked(item.id);
+    setEditedTodoTitle(item.title);
+  };
+  const editItemTitle = async (item) => {
+    const newItem = {
+      ...item,
+      title: editedTodoTitle,
+    };
+    await editTodo(newItem, item.id);
+    setEditItemClicked("");
+    dispatch(triggerRefetch(!refetchTodos));
+  };
   return (
     <div className="todo-page">
-      <h1>To-Do List</h1>
       <h1>What's on your agenda ?</h1>
       <div className="todo-input">
         <input
@@ -85,7 +106,7 @@ export default function TodoList() {
           Add <FontAwesomeIcon icon={faCirclePlus} />
         </button>
       </div>
-      <h1>Let's get some tasks done.</h1>
+      {todos.some((item) => !item.done) && <h1>Let's get some tasks done.</h1>}
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="unchecked-todo">
           {(provided) => (
@@ -97,14 +118,24 @@ export default function TodoList() {
               {todos.map((item, index) =>
                 !item.done ? (
                   <Draggable key={item.id} draggableId={item.id} index={index}>
-                    {(provided) => (
+                    {(provided, snapshot) => (
                       <div
                         className="todo-item"
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                         ref={provided.innerRef}
+                        style={{
+                          ...provided.draggableProps.style,
+                          // Add your custom styling for the dragged item here
+                          backgroundColor: snapshot.isDragging
+                            ? "hsl(0,0%,20%)"
+                            : ``,
+                          // You can adjust other styles based on the snapshot (dragging state)
+                        }}
                       >
                         <Checkbox
+                          checked={item.done}
+                          onChange={() => changeTaskToDone(item)}
                           sx={{
                             color: "#FF4200",
                             "&.Mui-checked": {
@@ -112,8 +143,23 @@ export default function TodoList() {
                             },
                           }}
                         />
-                        <h3>{item.title}</h3>
-
+                        {editItemClicked === item.id ? (
+                          <div className="in-item-todo-input">
+                            <input
+                              type="text"
+                              onChange={(e) =>
+                                setEditedTodoTitle(e.target.value)
+                              }
+                              value={editedTodoTitle}
+                            />
+                            <button onClick={() => editItemTitle(item)}>
+                              Edit
+                              <FontAwesomeIcon icon={faCheck} />
+                            </button>
+                          </div>
+                        ) : (
+                          <h3>{item.title}</h3>
+                        )}
                         <div className="todo-item-toolbox">
                           <FontAwesomeIcon
                             icon={faTrashCan}
@@ -124,7 +170,14 @@ export default function TodoList() {
                             onClick={() => pinTodoItem(item)}
                             style={{ color: item.pinned ? "#FF4200" : "" }}
                           />
-                          <FontAwesomeIcon icon={faPen} />
+                          <FontAwesomeIcon
+                            icon={faPen}
+                            style={{
+                              color:
+                                editItemClicked === item.id ? "#FF4200" : "",
+                            }}
+                            onClick={() => toggleEditItem(item)}
+                          />
                         </div>
                       </div>
                     )}
@@ -136,7 +189,82 @@ export default function TodoList() {
           )}
         </Droppable>
       </DragDropContext>
-      <h1>Keep going you're getting there.</h1>
+      {todos.length > 0 &&
+        (todos.every((item) => item.done) ? (
+          <h1>All done, you can rest now.</h1>
+        ) : todos.some((item) => item.done) ? (
+          <h1>Keep going you're getting there.</h1>
+        ) : todos.some((item) => !item.done) ? null : null)}
+
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId="checked-todo">
+          {(provided) => (
+            <div
+              className="checked-todo"
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+            >
+              {todos.map((item, index) =>
+                item.done ? (
+                  <Draggable key={item.id} draggableId={item.id} index={index}>
+                    {(provided, snapshot) => (
+                      <div
+                        className="todo-item"
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        ref={provided.innerRef}
+                        style={{
+                          ...provided.draggableProps.style,
+                          // Add your custom styling for the dragged item here
+                          backgroundColor: snapshot.isDragging
+                            ? "hsl(0,0%,20%)"
+                            : ``,
+                          // You can adjust other styles based on the snapshot (dragging state)
+                        }}
+                      >
+                        <Checkbox
+                          checked={item.done}
+                          onChange={() => changeTaskToDone(item)}
+                          sx={{
+                            color: "#FF4200",
+                            "&.Mui-checked": {
+                              color: "#FF4200",
+                            },
+                          }}
+                        />
+                        <h3
+                          style={{
+                            textDecoration: "line-through",
+                            textDecorationThickness: "2px",
+                          }}
+                        >
+                          {item.title}
+                        </h3>
+
+                        <div
+                          className="todo-item-toolbox"
+                          style={{ width: `45px` }}
+                        >
+                          <FontAwesomeIcon
+                            icon={faTrashCan}
+                            onClick={() => deleteTodoItem(item.id)}
+                          />
+                          <FontAwesomeIcon
+                            icon={faThumbTack}
+                            onClick={() => pinTodoItem(item)}
+                            style={{ color: item.pinned ? "#FF4200" : "" }}
+                          />
+                        </div>
+                      </div>
+                    )}
+                  </Draggable>
+                ) : null
+              )}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </DragDropContext>
     </div>
   );
 }

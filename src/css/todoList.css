@@ -7,7 +7,7 @@
   width: 90%;
   padding: 10px 50px;
 }
-.todo-page-contianer .todo-page h1:not(:nth-of-type(1)) {
+.todo-page-contianer .todo-page h1 {
   margin: 30px 0;
   text-align: center;
 }
@@ -34,15 +34,16 @@
   color: hsl(0, 0%, 35%);
 }
 .todo-input input:focus {
-  border: 2px solid #FF4200;
+  border: 2px solid #ff4200;
   transition: border 0.3s ease;
 }
 .todo-input button {
   width: 15%;
+  white-space: nowrap;
   padding: 12px 20px;
   margin-left: 20px;
   border-radius: 5px;
-  background-color: #FF4200;
+  background-color: #ff4200;
   color: white;
   border: none;
   cursor: pointer;
@@ -50,16 +51,22 @@
   box-shadow: 0 0 5px grey;
 }
 
-.unchecked-todo {
+.unchecked-todo,
+.checked-todo {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  max-height: 500px;
+  overflow-y: auto;
+  margin: 0 auto;
+  width: 55%;
 }
-.unchecked-todo .todo-item {
+.unchecked-todo .todo-item,
+.checked-todo .todo-item {
   display: flex;
   align-items: center;
-  width: 50%;
+  width: 95%;
   background-color: #17141f;
   border-radius: 5px;
   padding: 20px;
@@ -68,7 +75,8 @@
   margin: 10px 0;
   box-shadow: 0 0 5px black;
 }
-.unchecked-todo .todo-item-toolbox {
+.unchecked-todo .todo-item-toolbox,
+.checked-todo .todo-item-toolbox {
   width: 80px;
   display: flex;
   flex-direction: row-reverse;
@@ -77,10 +85,53 @@
   top: 15%;
   right: 2%;
 }
-.unchecked-todo .todo-item-toolbox svg {
+.unchecked-todo .todo-item-toolbox svg,
+.checked-todo .todo-item-toolbox svg {
   cursor: pointer;
 }
-.unchecked-todo .todo-item-toolbox svg:hover {
-  color: #FF4200;
+.unchecked-todo .todo-item-toolbox svg:hover,
+.checked-todo .todo-item-toolbox svg:hover {
+  color: #ff4200;
   transition: color 0.3s ease;
+}
+.unchecked-todo .in-item-todo-input,
+.checked-todo .in-item-todo-input {
+  width: 80%;
+}
+.unchecked-todo .in-item-todo-input input,
+.checked-todo .in-item-todo-input input {
+  background-color: hsl(0, 0%, 30%);
+  color: white;
+  padding: 5px;
+  width: 85%;
+  border: 2px solid black;
+  border-radius: 4px;
+  font-weight: 600;
+  outline: none;
+}
+.unchecked-todo .in-item-todo-input input:focus,
+.checked-todo .in-item-todo-input input:focus {
+  border: 1px solid #ff4200;
+  transition: border 0.3s ease;
+}
+.unchecked-todo .in-item-todo-input button,
+.checked-todo .in-item-todo-input button {
+  white-space: nowrap;
+  width: fit-content;
+  padding: 4px;
+  margin-left: 10px;
+  border-radius: 5px;
+  background-color: #33b864;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: 1000;
+}
+.unchecked-todo .in-item-todo-input button svg,
+.checked-todo .in-item-todo-input button svg {
+  margin-left: 10px;
+}
+
+.checked-todo {
+  margin-bottom: 20px;
 }/*# sourceMappingURL=todoList.css.map */
