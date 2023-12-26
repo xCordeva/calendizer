@@ -19,7 +19,7 @@ const useFetchEvents = () => {
 
   const [events, setEvents] = useState([]);
   const [userId, setUserId] = useState(null);
-
+  const [isLoading, setIsLoading] = useState(true);
   const getUserId = async () => {
     return new Promise((resolve) => {
       const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -35,6 +35,7 @@ const useFetchEvents = () => {
     const fetchData = async () => {
       const uid = await getUserId();
       if (!uid) {
+        setIsLoading(false);
         return;
       }
 
@@ -49,6 +50,7 @@ const useFetchEvents = () => {
         ...doc.data(),
       }));
       setEvents(eventsData);
+      setIsLoading(false);
     };
 
     fetchData();
@@ -80,7 +82,7 @@ const useFetchEvents = () => {
     deleteDoc(doc(db, "events", eId));
   };
 
-  return { events, addEvent, editEvent, deleteEvent };
+  return { events, addEvent, editEvent, deleteEvent, isLoading };
 };
 
 export default useFetchEvents;

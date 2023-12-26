@@ -28,3 +28,11 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background-color: #555;
 }
+
+.loading {
+  display: flex;
+  height: calc(100dvh - 60px);
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}

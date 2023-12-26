@@ -13,6 +13,8 @@ import { openEventPopup } from "@/features/EventPopup";
 import useFetchEvents from "@/Custom Hooks/useFetchEvents";
 import EventHoverDetails from "./EventHoverDetails";
 import { openSmallEditEventPopup } from "@/features/SmallEditEventPopup";
+import CircularProgress from "@mui/material/CircularProgress";
+import Stack from "@mui/material/Stack";
 
 const locales = {
   "en-US": enUS,
@@ -33,7 +35,7 @@ export default function MyCalendar() {
   const refetchEvents = useSelector((state) => state.RefetchEvents.value);
 
   //the dates are not stored in the right form so had to make it into the right form before providing
-  let { events } = useFetchEvents();
+  let { events, isLoading } = useFetchEvents();
   events = events.map((event) => ({
     ...event,
     start: event.start.toDate(),
@@ -115,6 +117,15 @@ export default function MyCalendar() {
     // Dispatch the action with the updated event
     dispatch(openSmallEditEventPopup(updatedEvent));
   };
+  if (isLoading) {
+    return (
+      <div className="loading">
+        <Stack>
+          <CircularProgress style={{ color: "#ff4200" }} />
+        </Stack>
+      </div>
+    );
+  }
 
   return (
     <div className="the-calendar">
