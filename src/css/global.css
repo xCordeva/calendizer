@@ -33,4 +33,7 @@ body {
   width: 100%;
   align-items: center;
   justify-content: center;
+}
+.loading img {
+  width: 20%;
 }/*# sourceMappingURL=global.css.map */
