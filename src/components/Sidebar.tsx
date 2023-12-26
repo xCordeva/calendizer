@@ -16,9 +16,6 @@ export default function Sidebar() {
       >
         Calendar
       </Link>
-      <Link href="/tasks" className={pathname === "/" ? "active" : ""}>
-        Tasks
-      </Link>
       <Link
         href="/todo-list"
         className={pathname === "/todo-list" ? "active" : ""}
