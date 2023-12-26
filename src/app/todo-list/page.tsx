@@ -6,13 +6,13 @@ import "@/css/global.css";
 import usePopupCloser from "@/Custom Hooks/usePopupCloser";
 import TodoList from "@/components/TodoList";
 
-export default function Calendar() {
+export default function TodoListPage() {
   usePopupCloser();
 
   return (
-    <div className="calendar-page">
+    <div className="todo-page">
       <Navbar />
-      <div className="calendar-page-contianer">
+      <div className="todo-page-contianer">
         <Sidebar />
         <TodoList />
       </div>

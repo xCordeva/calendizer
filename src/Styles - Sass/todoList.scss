@@ -1,0 +1,87 @@
+@use "variables.scss";
+.todo-page {
+  &-contianer {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    .todo-page {
+      width: 90%;
+      padding: 10px 50px;
+      h1:not(:nth-of-type(1)) {
+        margin: 30px 0;
+        text-align: center;
+      }
+    }
+  }
+}
+.todo-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px auto;
+  width: 50%;
+  input {
+    background-color: #c4c4c4;
+    padding: 12px 20px;
+    width: 85%;
+    border: 2px solid black;
+    border-radius: 4px;
+    font-weight: 600;
+    outline: none;
+    box-shadow: 0 0 5px grey;
+    &::placeholder {
+      color: hsl(0, 0%, 35%);
+    }
+    &:focus {
+      border: 2px solid variables.$main-color;
+      transition: border 0.3s ease;
+    }
+  }
+  button {
+    width: 15%;
+    padding: 12px 20px;
+    margin-left: 20px;
+    border-radius: 5px;
+    background-color: variables.$main-color;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: 1000;
+    box-shadow: 0 0 5px grey;
+  }
+}
+.unchecked-todo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .todo-item {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    background-color: #17141f;
+    border-radius: 5px;
+    padding: 20px;
+    position: relative;
+    color: white;
+    margin: 10px 0;
+    box-shadow: 0 0 5px black;
+    &-toolbox {
+      width: 80px;
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      position: absolute;
+      top: 15%;
+      right: 2%;
+      svg {
+        cursor: pointer;
+        &:hover {
+          color: variables.$main-color;
+          transition: color 0.3s ease;
+        }
+      }
+    }
+  }
+}

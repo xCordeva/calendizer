@@ -1,1 +1,86 @@
-/*# sourceMappingURL=todoList.css.map */
+.todo-page-contianer {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+.todo-page-contianer .todo-page {
+  width: 90%;
+  padding: 10px 50px;
+}
+.todo-page-contianer .todo-page h1:not(:nth-of-type(1)) {
+  margin: 30px 0;
+  text-align: center;
+}
+
+.todo-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px auto;
+  width: 50%;
+}
+.todo-input input {
+  background-color: #c4c4c4;
+  padding: 12px 20px;
+  width: 85%;
+  border: 2px solid black;
+  border-radius: 4px;
+  font-weight: 600;
+  outline: none;
+  box-shadow: 0 0 5px grey;
+}
+.todo-input input::placeholder {
+  color: hsl(0, 0%, 35%);
+}
+.todo-input input:focus {
+  border: 2px solid #FF4200;
+  transition: border 0.3s ease;
+}
+.todo-input button {
+  width: 15%;
+  padding: 12px 20px;
+  margin-left: 20px;
+  border-radius: 5px;
+  background-color: #FF4200;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: 1000;
+  box-shadow: 0 0 5px grey;
+}
+
+.unchecked-todo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.unchecked-todo .todo-item {
+  display: flex;
+  align-items: center;
+  width: 50%;
+  background-color: #17141f;
+  border-radius: 5px;
+  padding: 20px;
+  position: relative;
+  color: white;
+  margin: 10px 0;
+  box-shadow: 0 0 5px black;
+}
+.unchecked-todo .todo-item-toolbox {
+  width: 80px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  position: absolute;
+  top: 15%;
+  right: 2%;
+}
+.unchecked-todo .todo-item-toolbox svg {
+  cursor: pointer;
+}
+.unchecked-todo .todo-item-toolbox svg:hover {
+  color: #FF4200;
+  transition: color 0.3s ease;
+}/*# sourceMappingURL=todoList.css.map */

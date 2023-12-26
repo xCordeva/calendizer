@@ -13,11 +13,11 @@ import {
 } from "firebase/firestore";
 import { useSelector } from "react-redux";
 
-const useFetchEvents = () => {
+const useFetchTodo = () => {
   // a Redux state to refresh the fetch
-  const refetchEvents = useSelector((state) => state.RefetchEvents.value);
+  const refetchTodos = useSelector((state) => state.RefetchTodos.value);
 
-  const [events, setEvents] = useState([]);
+  const [todos, setTodos] = useState([]);
   const [userId, setUserId] = useState(null);
 
   const getUserId = async () => {
@@ -39,49 +39,49 @@ const useFetchEvents = () => {
       }
 
       const q = query(
-        collection(db, "events"),
+        collection(db, "todo"),
         where("userId", "==", uid),
-        orderBy("highPriority", "desc"),
-        orderBy("pinned")
+        orderBy("pinned", "desc"),
+        orderBy("order")
       );
       const querySnapshot = await getDocs(q);
-      const eventsData = querySnapshot.docs.map((doc) => ({
+      const todoData = querySnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
-      setEvents(eventsData);
+      setTodos(todoData);
     };
 
     fetchData();
-  }, [refetchEvents]);
+  }, [refetchTodos]);
 
-  const addEvent = async (newEventData) => {
+  const addTodo = async (newTodoData) => {
     const uid = await getUserId();
     if (!uid) {
       return;
     }
 
-    const docRef = collection(db, "events");
-    addDoc(docRef, { ...newEventData, userId: uid });
+    const docRef = collection(db, "todo");
+    addDoc(docRef, { ...newTodoData, userId: uid });
   };
 
-  const editEvent = async (editedEventData, eId) => {
+  const editTodo = async (editedTodoData, todoItemId) => {
     const uid = await getUserId();
     if (!uid) {
       return;
     }
-    const docRef = doc(db, "events", eId);
-    setDoc(docRef, { ...editedEventData, userId: uid });
+    const docRef = doc(db, "todo", todoItemId);
+    setDoc(docRef, { ...editedTodoData, userId: uid });
   };
-  const deleteEvent = async (eId) => {
+  const deleteTodo = async (todoItemId) => {
     const uid = await getUserId();
     if (!uid) {
       return;
     }
-    deleteDoc(doc(db, "events", eId));
+    deleteDoc(doc(db, "todo", todoItemId));
   };
 
-  return { events, addEvent, editEvent, deleteEvent };
+  return { todos, addTodo, editTodo, deleteTodo };
 };
 
-export default useFetchEvents;
+export default useFetchTodo;

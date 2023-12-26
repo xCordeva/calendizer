@@ -1,0 +1,18 @@
+.sidebar {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+.sidebar a {
+  text-decoration: none;
+  color: black;
+  font-weight: 1000;
+  padding: 5px 10px;
+  margin: 10px;
+  cursor: pointer;
+}
+.sidebar a:hover, .sidebar a.active {
+  background-color: #ff4200;
+  border-radius: 3px;
+  box-shadow: 0 0 10px grey;
+}/*# sourceMappingURL=sidebar.css.map */
