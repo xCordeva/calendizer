@@ -1,0 +1,36 @@
+.dashboard {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+}
+.dashboard-content {
+  width: 90%;
+}
+.dashboard-todo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 45%;
+  background-color: white;
+  padding: 30px;
+  border-radius: 5px;
+  margin: 20px 0;
+  text-align: center;
+  box-shadow: 0 0 10px grey;
+  min-height: 300px;
+}
+.dashboard-todo .dashboard-unchecked-container {
+  width: 100%;
+}
+.dashboard-todo h1 {
+  margin-bottom: 30px;
+  justify-self: flex-start;
+}
+.dashboard-todo p {
+  margin: auto 0;
+}
+.dashboard-todo .unchecked-todo {
+  width: 100%;
+}/*# sourceMappingURL=Dashboard.css.map */

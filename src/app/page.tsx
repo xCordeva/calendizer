@@ -1,11 +1,15 @@
 "use client";
 import Navbar from "@/components/Navbar";
 import "@/css/global.css";
+import "@/css/Dashboard.css";
 import usePopupCloser from "@/Custom Hooks/usePopupCloser";
 import Sidebar from "@/components/Sidebar";
+import UncheckedTodo from "@/components/UncheckedTodo";
 import useAuth from "@/Custom Hooks/useAuth";
+import useFetchTodo from "@/Custom Hooks/useFetchTodo";
 
 export default function Home() {
+  const { todos } = useFetchTodo();
   usePopupCloser();
   const { loading } = useAuth();
 
@@ -19,10 +23,24 @@ export default function Home() {
       </div>
     );
   }
+
   return (
     <div>
       <Navbar />
-      <Sidebar />
+      <div className="dashboard">
+        <Sidebar />
+        <div className="dashboard-content">
+          <div className="dashboard-todo">
+            <h1>To-Do List</h1>
+            {todos.every((item) => item.done) && (
+              <p>All clear you can rest now.</p>
+            )}
+            <div className="dashboard-unchecked-container">
+              <UncheckedTodo />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,7 +1,5 @@
-import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faCirclePlus,
   faThumbTack,
   faPen,
   faTrashCan,
@@ -9,23 +7,16 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Checkbox from "@mui/material/Checkbox";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd"; // this was "react-beautiful-dnd" at first but since the library is no longer maintained i used this forked edited one with up-to-date dependencies.
-import useFetchTodo from "@/Custom Hooks/useFetchTodo";
 import { triggerRefetch } from "@/features/RefetchTodos";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import useAuth from "@/Custom Hooks/useAuth";
-import {
-  closeShowSignInMsg,
-  openShowSignInMsg,
-} from "@/features/ShowSignInMsg";
-import UncheckedTodo from "./UncheckedTodo";
+import useFetchTodo from "@/Custom Hooks/useFetchTodo";
+import { useState } from "react";
 
-export default function TodoList() {
+export default function UncheckedTodo() {
   const dispatch = useDispatch();
-  const { user } = useAuth();
   const refetchTodos = useSelector((state) => state.RefetchTodos.value);
-  const { addTodo, deleteTodo, editTodo, todos } = useFetchTodo();
-  // this works when the dragging ends
+  const { deleteTodo, editTodo, todos } = useFetchTodo();
   const onDragEnd = (result) => {
     if (!result.destination) {
       return;
@@ -46,31 +37,6 @@ export default function TodoList() {
       editTodo(rest, id);
     });
     dispatch(triggerRefetch(!refetchTodos));
-  };
-
-  const [newTodoTitle, setNewTodoTitle] = useState("");
-
-  const addNewTodoItem = async () => {
-    if (!user) {
-      dispatch(openShowSignInMsg(true));
-      setTimeout(() => {
-        dispatch(closeShowSignInMsg());
-      }, 2000);
-      return;
-    }
-    if (newTodoTitle.trim() === "") {
-      return;
-    }
-    const newTodoData = {
-      title: newTodoTitle,
-      done: false,
-      pinned: false,
-      order: todos.length + 1,
-      timestamp: new Date(),
-    };
-    await addTodo(newTodoData);
-    dispatch(triggerRefetch(!refetchTodos));
-    setNewTodoTitle("");
   };
   const deleteTodoItem = async (todoItemId) => {
     deleteTodo(todoItemId);
@@ -93,40 +59,33 @@ export default function TodoList() {
     await editTodo(newItem, item.id);
     dispatch(triggerRefetch(!refetchTodos));
   };
-
+  const [editItemClicked, setEditItemClicked] = useState("");
+  const [editedTodoTitle, setEditedTodoTitle] = useState("");
+  const toggleEditItem = (item) => {
+    setEditItemClicked(item.id);
+    setEditedTodoTitle(item.title);
+  };
+  const editItemTitle = async (item) => {
+    const newItem = {
+      ...item,
+      title: editedTodoTitle,
+    };
+    await editTodo(newItem, item.id);
+    setEditItemClicked("");
+    dispatch(triggerRefetch(!refetchTodos));
+  };
   return (
-    <div className="todo-page">
-      <h1>What's on your agenda ?</h1>
-      <div className="todo-input">
-        <input
-          type="text"
-          placeholder="Add New Task"
-          onChange={(e) => setNewTodoTitle(e.target.value)}
-          value={newTodoTitle}
-        />
-        <button onClick={addNewTodoItem}>
-          Add <FontAwesomeIcon icon={faCirclePlus} />
-        </button>
-      </div>
-      {todos.some((item) => !item.done) && <h1>Let's get some tasks done.</h1>}
-      <UncheckedTodo />
-      {todos.length > 0 &&
-        (todos.every((item) => item.done) ? (
-          <h1>All done, you can rest now.</h1>
-        ) : todos.some((item) => item.done) ? (
-          <h1>Keep going you're getting there.</h1>
-        ) : todos.some((item) => !item.done) ? null : null)}
-
+    <div>
       <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId="checked-todo">
+        <Droppable droppableId="unchecked-todo">
           {(provided) => (
             <div
-              className="checked-todo"
+              className="unchecked-todo"
               {...provided.droppableProps}
               ref={provided.innerRef}
             >
               {todos.map((item, index) =>
-                item.done ? (
+                !item.done ? (
                   <Draggable key={item.id} draggableId={item.id} index={index}>
                     {(provided, snapshot) => (
                       <div
@@ -153,19 +112,24 @@ export default function TodoList() {
                             },
                           }}
                         />
-                        <h3
-                          style={{
-                            textDecoration: "line-through",
-                            textDecorationThickness: "2px",
-                          }}
-                        >
-                          {item.title}
-                        </h3>
-
-                        <div
-                          className="todo-item-toolbox"
-                          style={{ width: `45px` }}
-                        >
+                        {editItemClicked === item.id ? (
+                          <div className="in-item-todo-input">
+                            <input
+                              type="text"
+                              onChange={(e) =>
+                                setEditedTodoTitle(e.target.value)
+                              }
+                              value={editedTodoTitle}
+                            />
+                            <button onClick={() => editItemTitle(item)}>
+                              Edit
+                              <FontAwesomeIcon icon={faCheck} />
+                            </button>
+                          </div>
+                        ) : (
+                          <h3>{item.title}</h3>
+                        )}
+                        <div className="todo-item-toolbox">
                           <FontAwesomeIcon
                             icon={faTrashCan}
                             onClick={() => deleteTodoItem(item.id)}
@@ -174,6 +138,14 @@ export default function TodoList() {
                             icon={faThumbTack}
                             onClick={() => pinTodoItem(item)}
                             style={{ color: item.pinned ? "#FF4200" : "" }}
+                          />
+                          <FontAwesomeIcon
+                            icon={faPen}
+                            style={{
+                              color:
+                                editItemClicked === item.id ? "#FF4200" : "",
+                            }}
+                            onClick={() => toggleEditItem(item)}
                           />
                         </div>
                       </div>
