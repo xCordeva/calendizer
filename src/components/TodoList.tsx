@@ -13,9 +13,15 @@ import useFetchTodo from "@/Custom Hooks/useFetchTodo";
 import { triggerRefetch } from "@/features/RefetchTodos";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import useAuth from "@/Custom Hooks/useAuth";
+import {
+  closeShowSignInMsg,
+  openShowSignInMsg,
+} from "@/features/ShowSignInMsg";
 
 export default function TodoList() {
   const dispatch = useDispatch();
+  const { user } = useAuth();
   const refetchTodos = useSelector((state) => state.RefetchTodos.value);
   const { addTodo, deleteTodo, editTodo, todos } = useFetchTodo();
   // this works when the dragging ends
@@ -44,6 +50,13 @@ export default function TodoList() {
   const [newTodoTitle, setNewTodoTitle] = useState("");
 
   const addNewTodoItem = async () => {
+    if (!user) {
+      dispatch(openShowSignInMsg(true));
+      setTimeout(() => {
+        dispatch(closeShowSignInMsg());
+      }, 2000);
+      return;
+    }
     const newTodoData = {
       title: newTodoTitle,
       done: false,

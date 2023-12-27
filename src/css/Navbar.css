@@ -13,14 +13,14 @@
   text-decoration: none;
 }
 .navbar-container .navbar .logo-colored-part {
-  color: #FF4200;
+  color: #ff4200;
   cursor: pointer;
 }
 .navbar-container .navbar .notif-user {
   width: 50%;
   display: flex;
   justify-content: flex-end;
-  color: #FF9001;
+  color: #ff9001;
   align-items: center;
 }
 .navbar-container .navbar .notif-user svg {
@@ -43,7 +43,7 @@
   text-decoration: none;
   padding: 10px;
   border-radius: 5px;
-  background-color: #FF4200;
+  background-color: #ff4200;
   color: white;
   border: none;
   font-weight: 700;
@@ -71,7 +71,7 @@
   font-size: 15px;
   font-weight: 700;
   cursor: pointer;
-  color: #FF4200;
+  color: #ff4200;
 }
 .navbar-container .popup-notification {
   width: 300px;

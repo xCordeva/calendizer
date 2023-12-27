@@ -6,10 +6,12 @@ import "@/css/global.css";
 import usePopupCloser from "@/Custom Hooks/usePopupCloser";
 import TodoList from "@/components/TodoList";
 import useAuth from "@/Custom Hooks/useAuth";
+import PleaseSignInMsg from "@/components/PleaseSignInMsg";
+import { useSelector } from "react-redux";
 
 export default function TodoListPage() {
   usePopupCloser();
-
+  const ShowSignInMsg = useSelector((state) => state.ShowSignInMsg.value);
   const { loading } = useAuth();
   if (loading) {
     return (
@@ -25,6 +27,7 @@ export default function TodoListPage() {
     <div className="todo-page">
       <Navbar />
       <div className="todo-page-contianer">
+        {ShowSignInMsg && <PleaseSignInMsg />}
         <Sidebar />
         <TodoList />
       </div>

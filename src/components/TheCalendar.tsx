@@ -15,6 +15,11 @@ import EventHoverDetails from "./EventHoverDetails";
 import { openSmallEditEventPopup } from "@/features/SmallEditEventPopup";
 import CircularProgress from "@mui/material/CircularProgress";
 import Stack from "@mui/material/Stack";
+import useAuth from "@/Custom Hooks/useAuth";
+import {
+  closeShowSignInMsg,
+  openShowSignInMsg,
+} from "@/features/ShowSignInMsg";
 
 const locales = {
   "en-US": enUS,
@@ -41,8 +46,15 @@ export default function MyCalendar() {
     start: event.start.toDate(),
     end: event.end.toDate(),
   }));
-
+  const { user } = useAuth();
   const handleDayClick = (event) => {
+    if (!user) {
+      dispatch(openShowSignInMsg(true));
+      setTimeout(() => {
+        dispatch(closeShowSignInMsg());
+      }, 2000);
+      return;
+    }
     const { start, end } = event;
 
     const formattedDate = new Date(start).toLocaleDateString("en-US", {
@@ -61,6 +73,13 @@ export default function MyCalendar() {
   const [popupPosition, setPopupPosition] = useState({ top: 0, left: 0 });
 
   const handleEventClick = (event, e) => {
+    if (!user) {
+      dispatch(openShowSignInMsg(true));
+      setTimeout(() => {
+        dispatch(closeShowSignInMsg());
+      }, 2000);
+      return;
+    }
     const rect = e.target.getBoundingClientRect(); // Get the position of the clicked event
     //if the event has high Priority the popup will have an extra height so we increase the hegiht with 20px,
     const top = rect.top - 200 + (event.highPriority ? -20 : 0);

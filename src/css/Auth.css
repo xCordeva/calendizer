@@ -11,7 +11,7 @@
   font-size: 3rem;
 }
 .user-signs > h1 .logo-colored-part {
-  color: #FF4200;
+  color: #ff4200;
 }
 .user-signs .sign-box {
   display: flex;
@@ -49,10 +49,10 @@
   border: 2px solid transparent;
 }
 .user-signs .sign-box form input:focus {
-  border: 2px solid #FF4200;
+  border: 2px solid #ff4200;
 }
 .user-signs .sign-box form button {
-  background-color: #FF4200;
+  background-color: #ff4200;
   font-weight: 1000;
   transition: background-color 0.5s;
 }

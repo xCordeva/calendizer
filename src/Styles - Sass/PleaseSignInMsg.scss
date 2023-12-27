@@ -1,0 +1,17 @@
+.pls-sign-in {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  height: 100%;
+  width: 100%;
+  background-color: hsla(0, 0%, 0%, 0.5);
+  z-index: 99;
+  .msg-popup {
+    background-color: white;
+    width: fit-content;
+    padding: 30px;
+    border-radius: 5px;
+    margin: 2.5% auto;
+    box-shadow: 0 0 10px black;
+  }
+}

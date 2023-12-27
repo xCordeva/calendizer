@@ -21,27 +21,27 @@
   cursor: pointer;
 }
 .rbc-toolbar button:active {
-  background-color: #FF4200;
+  background-color: #ff4200;
   color: white;
 }
 .rbc-toolbar button:active:focus {
-  background-color: #FF4200;
+  background-color: #ff4200;
   color: white;
 }
 .rbc-toolbar button:hover {
-  background-color: #FF4200;
+  background-color: #ff4200;
   color: white;
 }
 .rbc-toolbar button.rbc-active {
-  background-color: #FF4200;
+  background-color: #ff4200;
   color: white;
 }
 .rbc-toolbar button.rbc-active:focus {
-  background-color: #FF4200;
+  background-color: #ff4200;
   color: white;
 }
 .rbc-toolbar button.rbc-active:hover {
-  background-color: #FF4200;
+  background-color: #ff4200;
   color: white;
 }
 
@@ -54,7 +54,7 @@
 }
 
 .rbc-row:nth-child(2) .rbc-row-segment .rbc-event {
-  background-color: #FF4200;
+  background-color: #ff4200;
 }
 
 .rbc-row:nth-child(3) .rbc-row-segment .rbc-event {
@@ -78,7 +78,7 @@
 }
 
 .rbc-row:nth-child(8) .rbc-row-segment .rbc-event {
-  background-color: #FF4200;
+  background-color: #ff4200;
 }
 
 .rbc-row:nth-child(9) .rbc-row-segment .rbc-event {
@@ -102,7 +102,7 @@
 }
 
 .rbc-row:nth-child(14) .rbc-row-segment .rbc-event {
-  background-color: #FF4200;
+  background-color: #ff4200;
 }
 
 .rbc-row:nth-child(15) .rbc-row-segment .rbc-event {
@@ -126,7 +126,7 @@
 }
 
 .rbc-row:nth-child(20) .rbc-row-segment .rbc-event {
-  background-color: #FF4200;
+  background-color: #ff4200;
 }
 
 .rbc-row:nth-child(21) .rbc-row-segment .rbc-event {
@@ -150,7 +150,7 @@
 }
 
 .rbc-row:nth-child(26) .rbc-row-segment .rbc-event {
-  background-color: #FF4200;
+  background-color: #ff4200;
 }
 
 .rbc-row:nth-child(27) .rbc-row-segment .rbc-event {
@@ -174,7 +174,7 @@
 }
 
 .rbc-row:nth-child(32) .rbc-row-segment .rbc-event {
-  background-color: #FF4200;
+  background-color: #ff4200;
 }
 
 .rbc-row:nth-child(33) .rbc-row-segment .rbc-event {
@@ -198,7 +198,7 @@
 }
 
 .rbc-row:nth-child(38) .rbc-row-segment .rbc-event {
-  background-color: #FF4200;
+  background-color: #ff4200;
 }
 
 .rbc-row:nth-child(39) .rbc-row-segment .rbc-event {
@@ -222,7 +222,7 @@
 }
 
 .rbc-row:nth-child(44) .rbc-row-segment .rbc-event {
-  background-color: #FF4200;
+  background-color: #ff4200;
 }
 
 .rbc-row:nth-child(45) .rbc-row-segment .rbc-event {
@@ -246,7 +246,7 @@
 }
 
 .rbc-row:nth-child(50) .rbc-row-segment .rbc-event {
-  background-color: #FF4200;
+  background-color: #ff4200;
 }
 
 .rbc-agenda-view, .rbc-time-view {
