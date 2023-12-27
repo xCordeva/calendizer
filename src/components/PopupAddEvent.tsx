@@ -43,7 +43,7 @@ export default function PopupAddEvent() {
   if (editEventClicked) {
     dafaultDateStart = new Date(editEventClicked.start);
     dafaultDateEnd = new Date(editEventClicked.end);
-
+    dafaultDateEnd.setHours(1, 0, 0, 0); // since it makes it 12Am the day dont show up on the calendar, so changing the time to 1Am so it would count the day user actually pick.
     defaultStartTime = dafaultDateStart;
     defaultEndTime = dafaultDateEnd;
   }
