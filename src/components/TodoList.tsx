@@ -57,6 +57,9 @@ export default function TodoList() {
       }, 2000);
       return;
     }
+    if (newTodoTitle.trim() === "") {
+      return;
+    }
     const newTodoData = {
       title: newTodoTitle,
       done: false,
