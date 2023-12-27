@@ -17,7 +17,7 @@ export default function TodoListPage() {
     return (
       <div className="loading">
         <img
-          src="https://im2.ezgif.com/tmp/ezgif-2-e819725d06.gif"
+          src="https://firebasestorage.googleapis.com/v0/b/calendizer-cd2df.appspot.com/o/loading.gif?alt=media&token=5e97938a-3fd6-4f11-b741-abb0cad86c7e"
           alt="calendar-loading-gif"
         />
       </div>
