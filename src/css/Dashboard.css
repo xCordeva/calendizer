@@ -1,6 +1,9 @@
+.dashboard-page {
+  position: relative;
+}
+
 .dashboard {
   display: flex;
-  position: relative;
   align-items: flex-start;
   justify-content: space-between;
   width: 100%;
@@ -37,6 +40,7 @@
 }
 .dashboard-box p {
   margin: auto 0;
+  transform: translateY(150%);
 }
 .dashboard-box .unchecked-todo {
   width: 100%;
@@ -44,7 +48,9 @@
 .dashboard-box.day-plan-box {
   justify-content: flex-start;
   min-height: 400px;
-  height: fit-content;
+}
+.dashboard-box.day-plan-box p {
+  transform: translateY(550%);
 }
 .dashboard-box .dashboard-day-container {
   width: 100%;

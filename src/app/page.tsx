@@ -27,7 +27,7 @@ export default function Home() {
   }
 
   return (
-    <div>
+    <div className="dashboard-page">
       <Navbar />
       <div className="dashboard">
         <Sidebar />
@@ -46,7 +46,6 @@ export default function Home() {
             <div className="dashboard-day-container">
               <DayPlan />
             </div>
-            {todos.every((item) => item.done) && <p>No plans for the day.</p>}
           </div>
         </div>
       </div>

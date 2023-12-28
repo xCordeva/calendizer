@@ -1,7 +1,9 @@
 @use "variables.scss";
+.dashboard-page {
+  position: relative;
+}
 .dashboard {
   display: flex;
-  position: relative;
   align-items: flex-start;
   justify-content: space-between;
   width: 100%;
@@ -37,16 +39,18 @@
     }
     p {
       margin: auto 0;
+      transform: translateY(150%);
     }
     .unchecked-todo {
       width: 100%;
     }
     // Day Plan Box
-
     &.day-plan-box {
       justify-content: flex-start;
       min-height: 400px;
-      height: fit-content;
+      p {
+        transform: translateY(550%);
+      }
     }
     .dashboard-day-container {
       width: 100%;

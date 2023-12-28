@@ -8,12 +8,12 @@ import {
   faCalendar,
   faPenToSquare,
   faTrash,
-  faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import { openEditEvent } from "@/features/EditEvent";
 import { closeSmallEditEventPopup } from "@/features/SmallEditEventPopup";
 import useFetchEvents from "@/Custom Hooks/useFetchEvents";
 import { triggerRefetch } from "@/features/RefetchEvents";
+import ConfirmDelete from "./ConfirmDelete";
 
 export default function EventHoverDetails({ popupPosition }) {
   const dispatch = useDispatch();
@@ -92,28 +92,10 @@ export default function EventHoverDetails({ popupPosition }) {
   return (
     <div>
       {confrimDelete && (
-        <div className="confrim-delete">
-          <div className="confrim-delete-popup">
-            <h2>Are you sure you want to delete this ?</h2>
-            <p>This action can't be undone</p>
-            <div>
-              <button
-                className="events-button yes-button"
-                onClick={handleDeleteEvent}
-              >
-                Yes
-                <FontAwesomeIcon icon={faCheck} />
-              </button>
-              <button
-                className="events-button no-button"
-                onClick={toggleConfrimDelete}
-              >
-                No
-                <FontAwesomeIcon icon={faXmark} />
-              </button>
-            </div>
-          </div>
-        </div>
+        <ConfirmDelete
+          onCancel={toggleConfrimDelete}
+          onConfirm={handleDeleteEvent}
+        />
       )}
 
       <div ref={hoverDivRef} className="edit-event-popup popup">

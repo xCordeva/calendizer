@@ -12,7 +12,8 @@ import ConfirmDelete from "./ConfirmDelete";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { triggerRefetch } from "@/features/RefetchEvents";
-import { closeEditEvent } from "@/features/EditEvent";
+import { openEditEvent } from "@/features/EditEvent";
+import PopupAddEvent from "@/components/PopupAddEvent";
 
 export default function DayPlan() {
   const dispatch = useDispatch();
@@ -48,6 +49,7 @@ export default function DayPlan() {
     previousDay.setDate(currentDate.getDate() - 1);
     setCurrentDate(previousDay);
   };
+
   let { events } = useFetchEvents();
   events = events.map((event) => ({
     ...event,
@@ -79,7 +81,7 @@ export default function DayPlan() {
 
   // day plan logic
 
-  const { addEvent, editEvent, deleteEvent } = useFetchEvents();
+  const { deleteEvent } = useFetchEvents();
   const refetchEvents = useSelector((state) => state.RefetchEvents.value);
   const [confrimDelete, setConfrimDelete] = useState(null);
   const handleDeleteEvent = () => {
@@ -88,6 +90,62 @@ export default function DayPlan() {
     setConfrimDelete(null);
   };
 
+  //edit event icon
+
+  const handleEventSelect = (event) => {
+    const { start, end, timestamp, ...others } = event;
+
+    let formattedStart = start;
+    let formattedEnd = end;
+    formattedStart = new Date(start).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    });
+    formattedEnd = new Date(end).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    });
+    if (event.allDay) {
+      formattedStart = new Date(start).toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+      });
+
+      formattedEnd = new Date(end).toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+      });
+    }
+
+    const formattedTimestamp = new Date(timestamp).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    });
+
+    const updatedEvent = {
+      ...others,
+      start: formattedStart,
+      end: formattedEnd,
+      timestamp: formattedTimestamp,
+    };
+    // Dispatch the action with the updated event
+    dispatch(openEditEvent(updatedEvent));
+  };
+  let hasPlansForTheDay = false;
   return (
     <div className="day-plan">
       <div className="day-header">
@@ -96,57 +154,71 @@ export default function DayPlan() {
         <FontAwesomeIcon icon={faSquareCaretRight} onClick={goToNextDay} />
       </div>
       <div className="day-body">
-        {events.map((event) =>
-          (event.start <= currentDate && currentDate <= event.end) ||
-          (event.start.toLocaleDateString() <=
-            currentDate.toLocaleDateString() &&
-            currentDate.toLocaleDateString() <=
-              event.end.toLocaleDateString()) ? (
-            <div className="day-content" key={event.id}>
-              <div className="day-content-header">
-                <div className="day-event-time">
-                  <h5>
-                    {event.allDay
-                      ? formatDateOnly(event.start)
-                      : formatDateAndTime(event.start)}
-                    &nbsp;-
-                    <br />
-                    {event.allDay
-                      ? formatDateOnly(event.end)
-                      : formatDateAndTime(event.end)}
-                  </h5>
-                </div>
-                <div className="day-event-toolbox">
-                  <FontAwesomeIcon icon={faPenToSquare} />
+        {events.map((event) => {
+          const isEventInRange =
+            (event.start <= currentDate && currentDate <= event.end) ||
+            (event.start.toLocaleDateString() <=
+              currentDate.toLocaleDateString() &&
+              currentDate.toLocaleDateString() <=
+                event.end.toLocaleDateString());
 
-                  <FontAwesomeIcon
-                    icon={faTrash}
-                    onClick={() => setConfrimDelete(event.id)}
-                  />
+          if (isEventInRange) {
+            hasPlansForTheDay = true; // Set the flag if there are plans for the day
+
+            return (
+              <div className="day-content" key={event.id}>
+                <div className="day-content-header">
+                  <div className="day-event-time">
+                    <h5>
+                      {event.allDay
+                        ? formatDateOnly(event.start)
+                        : formatDateAndTime(event.start)}
+                      &nbsp;-
+                      <br />
+                      {event.allDay
+                        ? formatDateOnly(event.end)
+                        : formatDateAndTime(event.end)}
+                    </h5>
+                  </div>
+                  <div className="day-event-toolbox">
+                    <FontAwesomeIcon
+                      icon={faPenToSquare}
+                      onClick={() => handleEventSelect(event)}
+                    />
+
+                    <FontAwesomeIcon
+                      icon={faTrash}
+                      onClick={() => setConfrimDelete(event.id)}
+                    />
+                  </div>
+                </div>
+                <div className="day-title-priority">
+                  <h2>{event.title}</h2>
+                  {event.highPriority && (
+                    <h5>
+                      <FontAwesomeIcon
+                        icon={faTriangleExclamation}
+                        className="edit-icons"
+                      />
+                      High Priority
+                    </h5>
+                  )}
                 </div>
               </div>
-              <div className="day-title-priority">
-                <h2>{event.title}</h2>
-                {event.highPriority && (
-                  <h5>
-                    <FontAwesomeIcon
-                      icon={faTriangleExclamation}
-                      className="edit-icons"
-                    />
-                    High Priority
-                  </h5>
-                )}
-              </div>
-            </div>
-          ) : null
-        )}
+            );
+          }
+
+          return null;
+        })}
       </div>
+      {!hasPlansForTheDay && <p>No plans for the day.</p>}
       {confrimDelete && (
         <ConfirmDelete
           onCancel={() => setConfrimDelete(null)}
           onConfirm={handleDeleteEvent}
         />
       )}
+      <PopupAddEvent />
     </div>
   );
 }

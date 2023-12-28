@@ -15,7 +15,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
-import { parse, format } from "date-fns";
+import { parse } from "date-fns";
 import { useDispatch, useSelector } from "react-redux";
 import { closeEventPopup } from "@/features/EventPopup";
 import { closeEditEvent } from "@/features/EditEvent";
@@ -24,6 +24,7 @@ import useFetchEvents from "@/Custom Hooks/useFetchEvents";
 import "firebase/compat/firestore";
 import { triggerRefetch } from "@/features/RefetchEvents";
 import ConfirmDelete from "./ConfirmDelete";
+import "@/css/PopupAdd-EditEvent.css";
 
 export default function PopupAddEvent() {
   // getting the date from the click on the slot,using REDUX selector
@@ -31,7 +32,6 @@ export default function PopupAddEvent() {
 
   // getting the date from the click on the slot,using REDUX selector
   const editEventClicked = useSelector((state) => state.EditEvent.value);
-
   //setting a default time and date for the popup
   let defaultStartTime = parse("12:00 PM", "h:mm a", new Date());
   let defaultEndTime = parse("01:00 PM", "h:mm a", new Date());
@@ -44,7 +44,11 @@ export default function PopupAddEvent() {
   if (editEventClicked) {
     dafaultDateStart = new Date(editEventClicked.start);
     dafaultDateEnd = new Date(editEventClicked.end);
-    dafaultDateEnd.setHours(1, 0, 0, 0); // since it makes it 12Am the day dont show up on the calendar, so changing the time to 1Am so it would count the day user actually pick.
+    // since it makes it 12Am the day dont show up on the calendar, so changing the time to 1Am so it would count the day user actually pick.
+    //this only happens when we change the all day to false.
+    if (editEventClicked.allDay) {
+      dafaultDateEnd.setHours(1, 0, 0, 0);
+    }
     defaultStartTime = dafaultDateStart;
     defaultEndTime = dafaultDateEnd;
   }
