@@ -1,18 +1,23 @@
 .dashboard {
   display: flex;
+  position: relative;
   align-items: flex-start;
   justify-content: space-between;
   width: 100%;
+  height: calc(100dvh - 60px);
 }
 .dashboard-content {
+  margin: 0 30px;
   width: 90%;
+  display: flex;
+  justify-content: space-between;
 }
-.dashboard-todo {
+.dashboard-box {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 45%;
+  width: 49.5%;
   background-color: white;
   padding: 30px;
   border-radius: 5px;
@@ -20,17 +25,83 @@
   text-align: center;
   box-shadow: 0 0 10px grey;
   min-height: 300px;
+  height: fit-content;
 }
-.dashboard-todo .dashboard-unchecked-container {
+.dashboard-box .dashboard-unchecked-container {
   width: 100%;
+  margin: auto 0;
 }
-.dashboard-todo h1 {
+.dashboard-box h1 {
   margin-bottom: 30px;
   justify-self: flex-start;
 }
-.dashboard-todo p {
+.dashboard-box p {
   margin: auto 0;
 }
-.dashboard-todo .unchecked-todo {
+.dashboard-box .unchecked-todo {
   width: 100%;
+}
+.dashboard-box.day-plan-box {
+  justify-content: flex-start;
+  min-height: 400px;
+  height: fit-content;
+}
+.dashboard-box .dashboard-day-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.dashboard-box .dashboard-day-container .day-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  width: 80%;
+}
+.dashboard-box .dashboard-day-container .day-header h2 {
+  margin: 0 50px;
+}
+.dashboard-box .dashboard-day-container .day-header svg {
+  font-size: 25px;
+  cursor: pointer;
+}
+.dashboard-box .day-body {
+  overflow-y: auto;
+  max-height: 550px;
+  margin: 10px 0;
+}
+.dashboard-box .day-body .day-content {
+  width: 97%;
+  background-color: #ff4200;
+  color: white;
+  margin: 10px 0 20px 0;
+  border-radius: 5px;
+  padding: 10px 20px 20px 20px;
+  text-align: left;
+  box-shadow: 0 0 5px grey;
+}
+.dashboard-box .day-body .day-content .day-content-header {
+  display: flex;
+  justify-content: space-between;
+}
+.dashboard-box .day-body .day-content .day-content-header .day-event-toolbox {
+  color: black;
+}
+.dashboard-box .day-body .day-content .day-content-header .day-event-toolbox svg {
+  margin-left: 20px;
+  cursor: pointer;
+}
+.dashboard-box .day-body .day-content .day-content-header .day-event-time {
+  display: flex;
+  color: hsl(0, 0%, 20%);
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+.dashboard-box .day-body .day-content .day-title-priority {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.dashboard-box .day-body .day-content .day-title-priority svg {
+  margin-right: 5px;
 }/*# sourceMappingURL=Dashboard.css.map */

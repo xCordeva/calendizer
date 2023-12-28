@@ -1,17 +1,23 @@
+@use "variables.scss";
 .dashboard {
   display: flex;
+  position: relative;
   align-items: flex-start;
   justify-content: space-between;
   width: 100%;
+  height: calc(100dvh - 60px);
   &-content {
+    margin: 0 30px;
     width: 90%;
+    display: flex;
+    justify-content: space-between;
   }
-  &-todo {
+  &-box {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 45%;
+    width: 49.5%;
     background-color: white;
     padding: 30px;
     border-radius: 5px;
@@ -19,8 +25,11 @@
     text-align: center;
     box-shadow: 0 0 10px grey;
     min-height: 300px;
+    height: fit-content;
+    //To Do list Box
     .dashboard-unchecked-container {
       width: 100%;
+      margin: auto 0;
     }
     h1 {
       margin-bottom: 30px;
@@ -31,6 +40,73 @@
     }
     .unchecked-todo {
       width: 100%;
+    }
+    // Day Plan Box
+
+    &.day-plan-box {
+      justify-content: flex-start;
+      min-height: 400px;
+      height: fit-content;
+    }
+    .dashboard-day-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      .day-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 auto;
+        width: 80%;
+        h2 {
+          margin: 0 50px;
+        }
+        svg {
+          font-size: 25px;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .day-body {
+      overflow-y: auto;
+      max-height: 550px;
+      margin: 10px 0;
+      .day-content {
+        width: 97%;
+        background-color: variables.$main-color;
+        color: white;
+        margin: 10px 0 20px 0;
+        border-radius: 5px;
+        padding: 10px 20px 20px 20px;
+        text-align: left;
+        box-shadow: 0 0 5px grey;
+        .day-content-header {
+          display: flex;
+          justify-content: space-between;
+          .day-event-toolbox {
+            color: black;
+            svg {
+              margin-left: 20px;
+              cursor: pointer;
+            }
+          }
+          .day-event-time {
+            display: flex;
+            color: hsl(0, 0%, 20%);
+            font-size: 15px;
+            margin-bottom: 5px;
+          }
+        }
+        .day-title-priority {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          svg {
+            margin-right: 5px;
+          }
+        }
+      }
     }
   }
 }

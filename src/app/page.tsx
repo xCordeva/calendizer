@@ -7,6 +7,8 @@ import Sidebar from "@/components/Sidebar";
 import UncheckedTodo from "@/components/UncheckedTodo";
 import useAuth from "@/Custom Hooks/useAuth";
 import useFetchTodo from "@/Custom Hooks/useFetchTodo";
+import "@/css/todoList.css";
+import DayPlan from "@/components/DayPlan";
 
 export default function Home() {
   const { todos } = useFetchTodo();
@@ -30,7 +32,7 @@ export default function Home() {
       <div className="dashboard">
         <Sidebar />
         <div className="dashboard-content">
-          <div className="dashboard-todo">
+          <div className="dashboard-box">
             <h1>To-Do List</h1>
             {todos.every((item) => item.done) && (
               <p>All clear you can rest now.</p>
@@ -38,6 +40,13 @@ export default function Home() {
             <div className="dashboard-unchecked-container">
               <UncheckedTodo />
             </div>
+          </div>
+          <div className="dashboard-box day-plan-box">
+            <h1>Day Plan</h1>
+            <div className="dashboard-day-container">
+              <DayPlan />
+            </div>
+            {todos.every((item) => item.done) && <p>No plans for the day.</p>}
           </div>
         </div>
       </div>
