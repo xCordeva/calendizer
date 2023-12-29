@@ -37,7 +37,7 @@ export default function Home() {
             <div className="dashboard-box">
               <h1>To-Do List</h1>
               {todos.every((item) => item.done) && (
-                <p>All clear you can rest now.</p>
+                <p className="all-clear-msg">All clear you can rest now.</p>
               )}
               <div className="dashboard-unchecked-container">
                 <UncheckedTodo />

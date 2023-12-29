@@ -39,3 +39,7 @@ body {
     width: 20%;
   }
 }
+
+body.scroll-lock {
+  overflow: hidden;
+}

@@ -16,6 +16,9 @@ import { openEditEvent } from "@/features/EditEvent";
 import PopupAddEvent from "@/components/PopupAddEvent";
 
 export default function DayPlan() {
+  function toggleScrollLock() {
+    document.body.classList.toggle("scroll-lock");
+  }
   const dispatch = useDispatch();
   const [currentDate, setCurrentDate] = useState(new Date());
 
@@ -85,6 +88,7 @@ export default function DayPlan() {
   const refetchEvents = useSelector((state) => state.RefetchEvents.value);
   const [confrimDelete, setConfrimDelete] = useState(null);
   const handleDeleteEvent = () => {
+    toggleScrollLock();
     deleteEvent(confrimDelete);
     dispatch(triggerRefetch(!refetchEvents));
     setConfrimDelete(null);
@@ -143,6 +147,7 @@ export default function DayPlan() {
       timestamp: formattedTimestamp,
     };
     // Dispatch the action with the updated event
+    toggleScrollLock();
     dispatch(openEditEvent(updatedEvent));
   };
   let hasPlansForTheDay = false;
@@ -188,7 +193,10 @@ export default function DayPlan() {
 
                     <FontAwesomeIcon
                       icon={faTrash}
-                      onClick={() => setConfrimDelete(event.id)}
+                      onClick={() => {
+                        setConfrimDelete(event.id);
+                        toggleScrollLock();
+                      }}
                     />
                   </div>
                 </div>
@@ -211,10 +219,15 @@ export default function DayPlan() {
           return null;
         })}
       </div>
-      {!hasPlansForTheDay && <p>No plans for the day.</p>}
+      {!hasPlansForTheDay && (
+        <p className="no-plans-msg">No plans for the day.</p>
+      )}
       {confrimDelete && (
         <ConfirmDelete
-          onCancel={() => setConfrimDelete(null)}
+          onCancel={() => {
+            setConfrimDelete(null);
+            toggleScrollLock();
+          }}
           onConfirm={handleDeleteEvent}
         />
       )}

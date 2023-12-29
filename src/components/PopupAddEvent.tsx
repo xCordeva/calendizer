@@ -27,6 +27,10 @@ import ConfirmDelete from "./ConfirmDelete";
 import "@/css/PopupAdd-EditEvent.css";
 
 export default function PopupAddEvent() {
+  // Function to enable/disable scrolling
+  function toggleScrollLock() {
+    document.body.classList.toggle("scroll-lock");
+  }
   // getting the date from the click on the slot,using REDUX selector
   const eventPopupClicked = useSelector((state) => state.EventPopup.value);
 
@@ -199,6 +203,7 @@ export default function PopupAddEvent() {
             onClick={() => {
               dispatch(closeEventPopup());
               dispatch(closeEditEvent());
+              toggleScrollLock();
               resetForm();
             }}
           />

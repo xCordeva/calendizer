@@ -36,4 +36,8 @@ body {
 }
 .loading img {
   width: 20%;
+}
+
+body.scroll-lock {
+  overflow: hidden;
 }/*# sourceMappingURL=global.css.map */
