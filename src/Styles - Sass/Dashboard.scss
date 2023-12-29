@@ -7,27 +7,34 @@
   align-items: flex-start;
   justify-content: space-between;
   width: 100%;
-  height: calc(100dvh - 60px);
   &-content {
     margin: 0 30px;
     width: 90%;
     display: flex;
     justify-content: space-between;
   }
+  .left-side,
+  .right-side {
+    display: flex;
+    flex-direction: column;
+    width: 49.5%;
+  }
   &-box {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 49.5%;
     background-color: white;
     padding: 30px;
     border-radius: 5px;
-    margin: 20px 0;
+    margin-top: 20px;
     text-align: center;
     box-shadow: 0 0 10px grey;
     min-height: 300px;
     height: fit-content;
+    &:nth-of-type(2) {
+      margin: 2.5% 0;
+    }
     //To Do list Box
     .dashboard-unchecked-container {
       width: 100%;
