@@ -1,6 +1,9 @@
 .week-plan {
   width: 100%;
 }
+.week-plan .no-plans-week-msg {
+  transform: translateY(350%);
+}
 
 .timeline {
   margin: 20px auto;

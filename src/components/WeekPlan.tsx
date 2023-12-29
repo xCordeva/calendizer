@@ -61,6 +61,9 @@ export default function WeekPlan() {
       <div className="timeline">
         <WeekTimeline filteredEvents={sortedFilteredEvents} />
       </div>
+      {sortedFilteredEvents.length === 0 && (
+        <p className="no-plans-week-msg">No plans for the Week.</p>
+      )}
     </div>
   );
 }

@@ -220,7 +220,9 @@ export default function DayPlan() {
         })}
       </div>
       {!hasPlansForTheDay && (
-        <p className="no-plans-msg">No plans for the day.</p>
+        <p className="no-plans-msg">
+          Looks like you can take the day off, no plans for the day.
+        </p>
       )}
       {confrimDelete && (
         <ConfirmDelete
