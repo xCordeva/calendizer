@@ -88,7 +88,6 @@ export default function DayPlan() {
   const refetchEvents = useSelector((state) => state.RefetchEvents.value);
   const [confrimDelete, setConfrimDelete] = useState(null);
   const handleDeleteEvent = () => {
-    toggleScrollLock();
     deleteEvent(confrimDelete);
     dispatch(triggerRefetch(!refetchEvents));
     setConfrimDelete(null);
@@ -228,7 +227,7 @@ export default function DayPlan() {
         <ConfirmDelete
           onCancel={() => {
             setConfrimDelete(null);
-            toggleScrollLock();
+            document.body.classList.remove("scroll-lock");
           }}
           onConfirm={handleDeleteEvent}
         />

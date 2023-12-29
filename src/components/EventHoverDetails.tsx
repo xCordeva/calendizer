@@ -16,6 +16,10 @@ import { triggerRefetch } from "@/features/RefetchEvents";
 import ConfirmDelete from "./ConfirmDelete";
 
 export default function EventHoverDetails({ popupPosition }) {
+  // Function to enable/disable scrolling
+  function toggleScrollLock() {
+    document.body.classList.toggle("scroll-lock");
+  }
   const dispatch = useDispatch();
   const hoverDivRef = useRef(null);
   const clickedEventData = useSelector(
@@ -66,6 +70,7 @@ export default function EventHoverDetails({ popupPosition }) {
   }, [popupPosition]);
 
   const handleEventSelect = () => {
+    toggleScrollLock();
     // Dispatch the action with the updated event
     dispatch(openEditEvent(updatedEvent));
     dispatch(closeSmallEditEventPopup());

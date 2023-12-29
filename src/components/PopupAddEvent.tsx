@@ -203,7 +203,7 @@ export default function PopupAddEvent() {
             onClick={() => {
               dispatch(closeEventPopup());
               dispatch(closeEditEvent());
-              toggleScrollLock();
+              document.body.classList.remove("scroll-lock");
               resetForm();
             }}
           />

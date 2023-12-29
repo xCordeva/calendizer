@@ -34,6 +34,10 @@ const localizer = dateFnsLocalizer({
 });
 
 export default function MyCalendar() {
+  // Function to enable/disable scrolling
+  function toggleScrollLock() {
+    document.body.classList.toggle("scroll-lock");
+  }
   const dispatch = useDispatch();
 
   // a Redux state to refresh the fetch
@@ -55,6 +59,7 @@ export default function MyCalendar() {
       }, 2000);
       return;
     }
+    toggleScrollLock();
     const { start, end } = event;
 
     const formattedDate = new Date(start).toLocaleDateString("en-US", {

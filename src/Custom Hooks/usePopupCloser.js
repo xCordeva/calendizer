@@ -46,6 +46,7 @@ const usePopupCloser = () => {
       dispatch(closeSmallEditEventPopup());
       dispatch(closeEditEvent());
       dispatch(closeEventPopup());
+      document.body.classList.remove("scroll-lock");
     }
   };
 
