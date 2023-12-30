@@ -4,7 +4,7 @@
 .navbar-container .navbar {
   display: flex;
   justify-content: space-between;
-  margin: 0 5%;
+  margin: 0 2% 0 0;
   height: 60px;
   align-items: center;
 }
@@ -17,9 +17,8 @@
   cursor: pointer;
 }
 .navbar-container .navbar .notif-user {
-  width: 50%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   color: #ff9001;
   align-items: center;
 }
@@ -32,12 +31,12 @@
   width: 20px;
   height: 20px;
   padding: 5px;
-  margin-left: 5%;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: white;
+  margin-left: 20px;
 }
 .navbar-container .navbar .nav-signin {
   text-decoration: none;
@@ -78,4 +77,31 @@
 }
 .navbar-container .popup-notification h5 {
   margin: 20px 0;
+}
+
+.toggle-sidebar {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+.toggle-sidebar p {
+  position: fixed;
+  color: white;
+  margin-left: 5px;
+  font-size: 15px;
+  left: -250px;
+  transition: left 0.3s ease-in-out;
+}
+.toggle-sidebar svg {
+  background-color: #eeeff1;
+  border-radius: 3px;
+  padding: 4px;
+  cursor: pointer;
+  transition: transform 0.5s ease;
+}
+.toggle-sidebar.open p {
+  left: 35px;
+}
+.toggle-sidebar.open svg {
+  transform: rotate(-180deg);
 }/*# sourceMappingURL=Navbar.css.map */

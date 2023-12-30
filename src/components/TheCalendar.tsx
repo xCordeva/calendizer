@@ -92,10 +92,14 @@ export default function MyCalendar() {
     const initialLeft = rect.left + rect.width / 2 - 150;
 
     // check if the initial left position overflows to the right
-    const adjustedLeft =
-      initialLeft + 300 > window.innerWidth
-        ? window.innerWidth - 300
-        : initialLeft;
+    let adjustedLeft = initialLeft;
+    if (initialLeft < 0) {
+      // If it overflows to the left, set left to 0
+      adjustedLeft = 0;
+    } else if (initialLeft + 300 > window.innerWidth) {
+      // If it overflows to the right, set left to the window's width minus the popup's width
+      adjustedLeft = window.innerWidth - 300;
+    }
     //if the top is less than 0 which means it overflows out of window make the top to be the bottom position of the rect
     const adjustedTop = top < 0 ? rect.bottom + 20 : top;
 
@@ -141,6 +145,8 @@ export default function MyCalendar() {
     // Dispatch the action with the updated event
     dispatch(openSmallEditEventPopup(updatedEvent));
   };
+  const isSidebarOpen = useSelector((state) => state.CloseSidebar.value);
+
   if (isLoading) {
     return (
       <div className="loading">
@@ -152,7 +158,7 @@ export default function MyCalendar() {
   }
 
   return (
-    <div className="the-calendar">
+    <div className={`the-calendar ${isSidebarOpen ? "open" : ""} `}>
       <Calendar
         localizer={localizer}
         events={events}

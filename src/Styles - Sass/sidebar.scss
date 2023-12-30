@@ -1,8 +1,12 @@
 .sidebar {
-  width: fit-content;
   display: flex;
+  position: relative;
+  flex-grow: 1;
+  width: 0;
   flex-direction: column;
   margin: 10px 0;
+  left: -20%;
+  transition: left 0.3s linear, width 0.3s linear;
   a {
     text-decoration: none;
     color: black;
@@ -16,5 +20,10 @@
       border-radius: 3px;
       box-shadow: 0 0 10px grey;
     }
+  }
+  &.open {
+    left: 0;
+    width: 20%;
+    transition: left 0.3s linear, width 0.3s linear;
   }
 }

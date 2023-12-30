@@ -8,6 +8,7 @@ import RefetchTodosReducer from "../features/RefetchTodos";
 import EditEventReducer from "../features/EditEvent";
 import SmallEditEventPopupReducer from "./SmallEditEventPopup";
 import ShowSignInMsgReducer from "./ShowSignInMsg";
+import CloseSidebarReducer from "./CloseSidebar";
 import { Provider } from "react-redux";
 
 const store = configureStore({
@@ -20,6 +21,7 @@ const store = configureStore({
     EditEvent: EditEventReducer,
     SmallEditEventPopup: SmallEditEventPopupReducer,
     ShowSignInMsg: ShowSignInMsgReducer,
+    CloseSidebar: CloseSidebarReducer,
   },
 });
 

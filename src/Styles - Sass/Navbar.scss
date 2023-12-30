@@ -5,7 +5,7 @@
   .navbar {
     display: flex;
     justify-content: space-between;
-    margin: 0 5%;
+    margin: 0 2% 0 0;
     height: 60px;
     align-items: center;
     .logo {
@@ -19,9 +19,8 @@
       }
     }
     .notif-user {
-      width: 50%;
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
       color: variables.$sec-color;
       align-items: center;
       svg {
@@ -32,12 +31,12 @@
           width: 20px;
           height: 20px;
           padding: 5px;
-          margin-left: 5%;
           border-radius: 50%;
           display: flex;
           justify-content: center;
           align-items: center;
           background-color: white;
+          margin-left: 20px;
         }
       }
     }
@@ -81,5 +80,34 @@
         margin: 20px 0;
       }
     }
+  }
+}
+
+.toggle-sidebar {
+  display: flex;
+  align-items: center;
+
+  margin-left: 10px;
+  p {
+    position: fixed;
+    color: white;
+    margin-left: 5px;
+    font-size: 15px;
+    left: -250px;
+    transition: left 0.3s ease-in-out;
+  }
+  svg {
+    background-color: variables.$background-color;
+    border-radius: 3px;
+    padding: 4px;
+    cursor: pointer;
+
+    transition: transform 0.5s ease;
+  }
+  &.open p {
+    left: 35px;
+  }
+  &.open svg {
+    transform: rotate(-180deg);
   }
 }

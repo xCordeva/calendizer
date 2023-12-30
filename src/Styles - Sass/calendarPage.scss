@@ -2,13 +2,14 @@
 
 .calendar-page {
   position: relative;
+
   .calendar-page-contianer {
     display: flex;
     justify-content: space-between;
-
     .the-calendar {
-      width: 90%;
+      width: 100%;
       height: calc(100dvh - 60px);
+      transition: left 0.3s ease-in-out, width 0.4s ease;
       .edit-event-popup {
         position: absolute;
         background-color: white;
@@ -57,6 +58,10 @@
       p {
         font-size: 17px;
         margin: 5px 0;
+      }
+      &.open {
+        width: 90%;
+        transition: left 0.3s linear, width 0.3s linear;
       }
     }
   }
