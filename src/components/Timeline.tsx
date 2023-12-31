@@ -8,6 +8,14 @@ import TimelineDot from "@mui/lab/TimelineDot";
 export default function WeekTimeline({ filteredEvents }) {
   const formatDateOnly = (date) => {
     const options = {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+    };
+    return date.toLocaleDateString("en-US", options);
+  };
+  const formatDateOnlyShort = (date) => {
+    const options = {
       weekday: "short",
       month: "short",
       day: "numeric",
@@ -41,14 +49,15 @@ export default function WeekTimeline({ filteredEvents }) {
                 {eventIndex === 0 && <div className="timeline-item"></div>}
                 {eventIndex === 0 && (
                   <div className="timeline-time">
-                    <h5>
-                      {formatDateOnly(event.start)}
-                      &nbsp;-&nbsp;
-                      {formatDateOnly(event.end)}
-                    </h5>
+                    <h5>{formatDateOnly(event.start)}</h5>
                   </div>
                 )}
+
                 <h3 className="timeline-title">{event.title}</h3>
+                <p className="timeline-title-period">
+                  {formatDateOnlyShort(event.start)} -{" "}
+                  {formatDateOnlyShort(event.end)}
+                </p>
                 <hr />
               </div>
             ))}

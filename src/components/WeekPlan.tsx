@@ -42,10 +42,7 @@ export default function WeekPlan() {
   const filteredEvents = events.filter(
     (event) =>
       !(event.end < new Date() || event.start > futureDate) ||
-      !(
-        event.end.toLocaleDateString() < new Date().toLocaleDateString() &&
-        event.start.toLocaleDateString() > futureDate.toLocaleDateString()
-      )
+      !(event.start.toLocaleDateString() > futureDate.toLocaleDateString())
   );
   // arrange the events based on the start date
   const sortedFilteredEvents = filteredEvents.sort(
@@ -59,7 +56,10 @@ export default function WeekPlan() {
         </h3>
       </div>
       <div className="timeline">
-        <WeekTimeline filteredEvents={sortedFilteredEvents} />
+        <WeekTimeline
+          filteredEvents={sortedFilteredEvents}
+          getOrdinalSuffix={getOrdinalSuffix}
+        />
       </div>
       {sortedFilteredEvents.length === 0 && (
         <p className="no-plans-week-msg">No plans for the Week.</p>
