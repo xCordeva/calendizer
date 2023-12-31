@@ -166,7 +166,8 @@ export default function PopupAddEvent() {
     }
     dispatch(closeEventPopup());
     dispatch(closeEditEvent());
-
+    // make scroll work
+    document.body.classList.remove("scroll-lock");
     // reset the states after saving
     resetForm();
     //a Redux action to refetch events when user adds new event
