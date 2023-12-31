@@ -101,14 +101,30 @@
   font-size: 15px;
 }
 .user-signs .sign-box button:nth-child(2) {
-  background-color: #4285F4;
+  background-color: #4285f4;
 }
 .user-signs .sign-box a {
   margin-top: 10px;
-  color: #C4C4C4;
+  color: #c4c4c4;
   text-align: center;
   transition: color 0.3s;
 }
 .user-signs .sign-box a:hover {
   color: white;
+}
+
+@media (max-width: 1200px) {
+  .user-signs .sign-box {
+    width: 55%;
+  }
+}
+@media (max-width: 750px) {
+  .user-signs .sign-box {
+    width: 80%;
+  }
+}
+@media (max-width: 550px) {
+  .user-signs .sign-box {
+    width: 90%;
+  }
 }/*# sourceMappingURL=auth.css.map */

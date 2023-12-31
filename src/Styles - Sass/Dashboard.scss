@@ -8,11 +8,16 @@
   align-items: flex-start;
   justify-content: space-between;
   width: 100%;
+  margin-bottom: 30px;
   &-content {
     margin: 0 30px;
-    width: 90%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
+    transition: width 0.3s linear;
+    &.open {
+      width: 90%;
+    }
   }
   .left-side,
   .right-side {
@@ -81,6 +86,10 @@
     }
 
     .day-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       overflow-y: auto;
       max-height: 550px;
       margin: 10px 0;
@@ -119,6 +128,95 @@
           }
         }
       }
+    }
+  }
+}
+.small-screen-day-plan {
+  display: none;
+}
+// Media queries
+@media (max-width: 1115px) {
+  .dashboard {
+    &-box {
+      &.day-plan-box {
+        .no-plans-msg {
+          transform: translateY(200%);
+        }
+      }
+    }
+  }
+}
+@media (max-width: 1055px) {
+  .dashboard {
+    .big-screen-day-plan {
+      display: none;
+    }
+    .small-screen-day-plan {
+      display: flex;
+      width: 100%;
+    }
+    .left-side {
+      display: flex;
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 975px) {
+  .dashboard {
+    &-content {
+      justify-content: center;
+      &.open {
+        width: 100%;
+      }
+    }
+  }
+}
+@media (max-width: 650px) {
+  .dashboard {
+    &-content {
+      justify-content: center;
+
+      &.open {
+        width: 100%;
+      }
+    }
+    &-box {
+      .dashboard-day-container {
+        .day-header {
+          width: 90%;
+          h2 {
+            margin: 0 0px;
+          }
+          svg {
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 500px) {
+  .dashboard {
+    &-box {
+      .dashboard-day-container {
+        .day-header {
+          width: 100%;
+        }
+      }
+      &.day-plan-box {
+        .no-plans-msg {
+          transform: translateY(290%);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .dashboard {
+    &-content {
+      margin: 0 10px;
     }
   }
 }

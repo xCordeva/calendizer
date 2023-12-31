@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialCloseSidebarValue = false;
+const initialCloseSidebarValue = true;
 export const closeSidebarSlice = createSlice({
   name: "closeSidebar",
   initialState: { value: initialCloseSidebarValue },

@@ -229,7 +229,10 @@ export default function DayPlan() {
             setConfrimDelete(null);
             document.body.classList.remove("scroll-lock");
           }}
-          onConfirm={handleDeleteEvent}
+          onConfirm={() => {
+            handleDeleteEvent();
+            document.body.classList.remove("scroll-lock");
+          }}
         />
       )}
       <PopupAddEvent />

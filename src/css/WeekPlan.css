@@ -37,4 +37,23 @@
 .timeline .css-v6mo1y-MuiTimelineDot-root,
 .timeline .css-1ami7lv-MuiTimelineConnector-root {
   background-color: #ff4200;
+}
+.timeline .css-55vwbm-MuiTimeline-root {
+  padding: 0px 0px;
+}
+
+@media (max-width: 650px) {
+  .timeline {
+    width: 100%;
+  }
+  .timeline .timeline-day {
+    padding: 0px;
+    width: 100%;
+  }
+  .timeline .timeline-day .timeline-title {
+    margin-top: 5px;
+  }
+  .timeline .timeline-day hr {
+    margin-top: 10px;
+  }
 }/*# sourceMappingURL=WeekPlan.css.map */

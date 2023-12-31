@@ -1,6 +1,7 @@
 @use "variables.scss";
 .week-plan {
   width: 100%;
+
   .no-plans-week-msg {
     transform: translateY(350%);
   }
@@ -37,5 +38,25 @@
   .css-v6mo1y-MuiTimelineDot-root,
   .css-1ami7lv-MuiTimelineConnector-root {
     background-color: variables.$main-color;
+  }
+  .css-55vwbm-MuiTimeline-root {
+    padding: 0px 0px;
+  }
+}
+
+// Media queries
+@media (max-width: 650px) {
+  .timeline {
+    width: 100%;
+    .timeline-day {
+      padding: 0px;
+      width: 100%;
+      .timeline-title {
+        margin-top: 5px;
+      }
+      hr {
+        margin-top: 10px;
+      }
+    }
   }
 }

@@ -3,9 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCirclePlus,
   faThumbTack,
-  faPen,
   faTrashCan,
-  faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import Checkbox from "@mui/material/Checkbox";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd"; // this was "react-beautiful-dnd" at first but since the library is no longer maintained i used this forked edited one with up-to-date dependencies.
@@ -21,6 +19,8 @@ import {
 import UncheckedTodo from "./UncheckedTodo";
 
 export default function TodoList() {
+  const isSidebarOpen = useSelector((state) => state.CloseSidebar.value);
+
   const dispatch = useDispatch();
   const { user } = useAuth();
   const refetchTodos = useSelector((state) => state.RefetchTodos.value);
@@ -95,7 +95,7 @@ export default function TodoList() {
   };
 
   return (
-    <div className="todo-page">
+    <div className={`todo-page ${isSidebarOpen ? "open" : ""} `}>
       <h1>What's on your agenda ?</h1>
       <div className="todo-input">
         <input

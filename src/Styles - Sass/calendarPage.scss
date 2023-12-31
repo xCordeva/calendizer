@@ -66,3 +66,16 @@
     }
   }
 }
+
+//Media queries
+@media (max-width: 975px) {
+  .calendar-page {
+    .calendar-page-contianer {
+      .the-calendar {
+        &.open {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

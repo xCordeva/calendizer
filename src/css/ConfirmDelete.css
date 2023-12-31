@@ -9,6 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 .confrim-delete .confrim-delete-popup {
   display: flex;
@@ -18,6 +19,7 @@
   padding: 20px;
   border-radius: 5px;
   background-color: white;
+  margin: 20px;
 }
 .confrim-delete .confrim-delete-popup p {
   margin: 10px;

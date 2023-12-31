@@ -15,6 +15,7 @@
   justify-content: center;
   align-items: center;
   .add-event {
+    margin: 20px;
     background-color: white;
     padding: 30px;
     width: fit-content;
@@ -114,6 +115,38 @@
         background-color: variables.$green-color;
         margin: 10px 20px;
         font-size: 15px;
+      }
+    }
+  }
+}
+
+// Media queries
+@media (max-width: 475px) {
+  .popup-event {
+    .error-message {
+      .error-message-popup {
+        margin: 30px;
+      }
+    }
+    .add-event {
+      width: fit-content;
+      min-width: 320px;
+      .label-container {
+        .time-details {
+          .date-time {
+            align-self: flex-start;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+          }
+          input {
+            width: 120px;
+          }
+          .choose-time {
+            width: 130px;
+            margin-top: 10px;
+          }
+        }
       }
     }
   }

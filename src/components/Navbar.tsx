@@ -25,7 +25,6 @@ export default function Navbar() {
     dispatch(closeSidebar(!isSidebarOpen));
   };
   const isSidebarOpen = useSelector((state) => state.CloseSidebar.value);
-  console.log(isSidebarOpen);
   return (
     <div className="navbar-container">
       <div className="navbar">

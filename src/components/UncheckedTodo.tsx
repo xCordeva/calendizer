@@ -122,7 +122,7 @@ export default function UncheckedTodo() {
                               value={editedTodoTitle}
                             />
                             <button onClick={() => editItemTitle(item)}>
-                              Edit
+                              {window.innerWidth > 400 ? `Edit` : ``}
                               <FontAwesomeIcon icon={faCheck} />
                             </button>
                           </div>

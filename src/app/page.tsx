@@ -10,8 +10,10 @@ import useFetchTodo from "@/Custom Hooks/useFetchTodo";
 import "@/css/todoList.css";
 import DayPlan from "@/components/DayPlan";
 import Weekplan from "@/components/WeekPlan";
+import { useSelector } from "react-redux";
 
 export default function Home() {
+  const isSidebarOpen = useSelector((state) => state.CloseSidebar.value);
   const { todos } = useFetchTodo();
   usePopupCloser();
   const { loading } = useAuth();
@@ -32,7 +34,7 @@ export default function Home() {
       <Navbar />
       <div className="dashboard">
         <Sidebar />
-        <div className="dashboard-content">
+        <div className={`dashboard-content ${isSidebarOpen ? "open" : ""} `}>
           <div className="left-side">
             <div className="dashboard-box">
               <h1>To-Do List</h1>
@@ -43,6 +45,12 @@ export default function Home() {
                 <UncheckedTodo />
               </div>
             </div>
+            <div className="dashboard-box day-plan-box small-screen-day-plan">
+              <h1>Day Plan</h1>
+              <div className="dashboard-day-container">
+                <DayPlan />
+              </div>
+            </div>
             <div className="dashboard-box day-plan-box">
               <h1>Week Plan</h1>
               <div className="dashboard-Week-container">
@@ -50,7 +58,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="right-side">
+          <div className="right-side big-screen-day-plan">
             <div className="dashboard-box day-plan-box">
               <h1>Day Plan</h1>
               <div className="dashboard-day-container">

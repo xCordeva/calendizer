@@ -89,25 +89,33 @@
 
   margin-left: 10px;
   p {
-    position: fixed;
+    position: absolute;
     color: white;
     margin-left: 5px;
     font-size: 15px;
-    left: -250px;
-    transition: left 0.3s ease-in-out;
+    transform: translateY(-50px);
+    left: 35px;
+    transition: transform 0.3s ease-in-out;
   }
   svg {
     background-color: variables.$background-color;
     border-radius: 3px;
     padding: 4px;
     cursor: pointer;
-
     transition: transform 0.5s ease;
   }
   &.open p {
-    left: 35px;
+    transform: translateY(0);
   }
   &.open svg {
     transform: rotate(-180deg);
+  }
+}
+//Media queries
+@media (max-width: 500px) {
+  .toggle-sidebar {
+    p {
+      display: none;
+    }
   }
 }

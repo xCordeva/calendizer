@@ -62,4 +62,10 @@
 .calendar-page .calendar-page-contianer .the-calendar.open {
   width: 90%;
   transition: left 0.3s linear, width 0.3s linear;
+}
+
+@media (max-width: 975px) {
+  .calendar-page .calendar-page-contianer .the-calendar.open {
+    width: 100%;
+  }
 }/*# sourceMappingURL=calendarPage.css.map */

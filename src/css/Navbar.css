@@ -85,12 +85,13 @@
   margin-left: 10px;
 }
 .toggle-sidebar p {
-  position: fixed;
+  position: absolute;
   color: white;
   margin-left: 5px;
   font-size: 15px;
-  left: -250px;
-  transition: left 0.3s ease-in-out;
+  transform: translateY(-50px);
+  left: 35px;
+  transition: transform 0.3s ease-in-out;
 }
 .toggle-sidebar svg {
   background-color: #eeeff1;
@@ -100,8 +101,14 @@
   transition: transform 0.5s ease;
 }
 .toggle-sidebar.open p {
-  left: 35px;
+  transform: translateY(0);
 }
 .toggle-sidebar.open svg {
   transform: rotate(-180deg);
+}
+
+@media (max-width: 500px) {
+  .toggle-sidebar p {
+    display: none;
+  }
 }/*# sourceMappingURL=Navbar.css.map */
