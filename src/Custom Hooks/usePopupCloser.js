@@ -39,6 +39,7 @@ const usePopupCloser = () => {
     }
     if (
       isSidebarOpen &&
+      window.innerWidth <= 975 &&
       !event.target.closest(".sidebar") &&
       !event.target.closest(".sidebar-icon")
     ) {
