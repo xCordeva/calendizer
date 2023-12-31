@@ -77,7 +77,7 @@ const SignIn = () => {
       </form>
       <button type="button" onClick={handleGoogleSignIn}>
         <img
-          src="https://www.svgrepo.com/show/303108/google-icon-logo.svg"
+          src="https://firebasestorage.googleapis.com/v0/b/calendizer-cd2df.appspot.com/o/google-icon-logo.svg?alt=media&token=556536e6-7afc-4f0d-b1e8-cb65f2330335"
           alt="google-icon"
         />
         Sign In with Google
