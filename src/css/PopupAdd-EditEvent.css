@@ -9,6 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow-y: scroll;
 }
 .popup-event.close-event-popup {
   display: none;
@@ -138,5 +139,10 @@
   .popup-event .add-event .label-container .time-details .choose-time {
     width: 130px;
     margin-top: 10px;
+  }
+}
+@media (max-height: 650px) {
+  .popup-event {
+    align-items: flex-start;
   }
 }/*# sourceMappingURL=PopupAdd-EditEvent.css.map */

@@ -14,6 +14,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow-y: scroll;
   .add-event {
     margin: 20px;
     background-color: white;
@@ -149,5 +150,10 @@
         }
       }
     }
+  }
+}
+@media (max-height: 650px) {
+  .popup-event {
+    align-items: flex-start;
   }
 }
