@@ -30,10 +30,8 @@
 
 //Media queries
 @media (max-width: 1055px) {
-  .sidebar {
-    &.open {
-      width: 11%;
-    }
+  .sidebar.open {
+    width: 11%;
   }
 }
 @media (max-width: 975px) {
@@ -46,6 +44,7 @@
     left: -200px;
     &.open {
       width: 160px;
+      height: 100%;
     }
   }
 }

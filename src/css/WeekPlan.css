@@ -1,5 +1,6 @@
 .week-plan {
   width: 100%;
+  margin-bottom: 30px;
 }
 .week-plan .no-plans-week-msg {
   transform: translateY(350%);

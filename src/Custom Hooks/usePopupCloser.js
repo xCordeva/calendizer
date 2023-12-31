@@ -8,6 +8,7 @@ import { auth } from "../firebase/firebaseConfig";
 import { closeSmallEditEventPopup } from "@/features/SmallEditEventPopup";
 import { closeEditEvent } from "@/features/EditEvent";
 import { closeEventPopup } from "@/features/EventPopup";
+import { closeSidebar } from "@/features/CloseSidebar";
 
 const usePopupCloser = () => {
   const [user] = useAuthState(auth);
@@ -20,7 +21,7 @@ const usePopupCloser = () => {
   const smallEditEventPopup = useSelector(
     (state) => state.SmallEditEventPopup.value
   );
-
+  const isSidebarOpen = useSelector((state) => state.CloseSidebar.value);
   const handleBodyClick = (event) => {
     // check if the click is outside the popup
     if (userPopupOpen && !event.target.closest(".popup")) {
@@ -35,6 +36,13 @@ const usePopupCloser = () => {
       !event.target.closest(".confrim-delete")
     ) {
       dispatch(closeSmallEditEventPopup());
+    }
+    if (
+      isSidebarOpen &&
+      !event.target.closest(".sidebar") &&
+      !event.target.closest(".sidebar-icon")
+    ) {
+      dispatch(closeSidebar(false));
     }
   };
 

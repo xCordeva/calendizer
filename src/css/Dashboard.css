@@ -1,6 +1,7 @@
 .dashboard-page {
   position: relative;
   height: 100%;
+  margin-bottom: 30px;
 }
 
 .dashboard {
@@ -8,7 +9,6 @@
   align-items: flex-start;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 30px;
 }
 .dashboard-content {
   margin: 0 30px;

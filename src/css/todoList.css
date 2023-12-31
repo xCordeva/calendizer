@@ -1,15 +1,21 @@
+.todo-page {
+  height: 100%;
+}
 .todo-page-contianer {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
+  height: 100%;
 }
 .todo-page-contianer .todo-page {
   width: 100%;
+  height: 100%;
   padding: 10px 50px;
   transition: width 0.3s linear;
 }
 .todo-page-contianer .todo-page.open {
   width: 90%;
+  height: 100%;
 }
 .todo-page-contianer .todo-page h1 {
   margin: 30px 0;

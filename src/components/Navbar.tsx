@@ -20,16 +20,20 @@ export default function Navbar() {
   const notificationPopupClicked = useSelector(
     (state) => state.NotificationPopup.value
   );
-  // const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const isSidebarOpen = useSelector((state) => state.CloseSidebar.value);
   const toggleSidebar = () => {
     dispatch(closeSidebar(!isSidebarOpen));
   };
-  const isSidebarOpen = useSelector((state) => state.CloseSidebar.value);
+
   return (
     <div className="navbar-container">
       <div className="navbar">
         <div className={`toggle-sidebar ${isSidebarOpen ? "open" : ""} `}>
-          <FontAwesomeIcon icon={faAnglesRight} onClick={toggleSidebar} />
+          <FontAwesomeIcon
+            icon={faAnglesRight}
+            onClick={toggleSidebar}
+            className="sidebar-icon"
+          />
           <p>Close Sidebar</p>
         </div>
         <div className="logo">

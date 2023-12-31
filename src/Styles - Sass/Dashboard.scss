@@ -2,13 +2,13 @@
 .dashboard-page {
   position: relative;
   height: 100%;
+  margin-bottom: 30px;
 }
 .dashboard {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 30px;
   &-content {
     margin: 0 30px;
     width: 100%;
