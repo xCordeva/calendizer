@@ -82,7 +82,6 @@ export default function EventHoverDetails({ popupPosition }) {
 
   const handleDeleteEvent = () => {
     if (clickedEventData) {
-      console.log(clickedEventData.id);
       deleteEvent(clickedEventData.id);
       dispatch(triggerRefetch(!refetchEvents));
       dispatch(closeSmallEditEventPopup());
