@@ -1,11 +1,11 @@
 {
   "homepage": "https://xcordeva.github.io/calendizer",
-  "name": "planner",
+  "name": "calendizer",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build --no-lint",
     "start": "next start",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
