@@ -12,6 +12,7 @@ node_modules
 
 # next.js
 /.next
+/.next/cache
 /out/
 
 # production
@@ -38,6 +39,7 @@ next-env.d.ts
 
 /src/firebaseConfig.js
 
+.next/cache
 .next/
 cache/
 out/
