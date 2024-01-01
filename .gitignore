@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+node_modules
 /.pnp
 .pnp.js
 .yarn/install-state.gz
@@ -10,7 +11,7 @@
 /coverage
 
 # next.js
-/.next/
+/.next
 /out/
 
 # production
@@ -36,3 +37,8 @@ yarn-error.log*
 next-env.d.ts
 
 /src/firebaseConfig.js
+
+.next/
+cache/
+out/
+/node_modules/.cache
