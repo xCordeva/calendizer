@@ -2,6 +2,8 @@
 
 Calendizer is a user-friendly online planner and organizer designed to help individuals efficiently manage their schedules, tasks, and events.
 
+![](./Dashboard-Screenshot.jpg)
+
 ## Table of Contents
 
 - [Getting Started](#getting-started)
