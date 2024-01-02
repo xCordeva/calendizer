@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   useCreateUserWithEmailAndPassword,
   useSignInWithGoogle,
@@ -7,14 +7,23 @@ import {
 import { auth } from "../../../firebase/firebaseConfig";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useAuthState } from "react-firebase-hooks/auth";
 
 const SignUp = () => {
   const router = useRouter();
-  const [user] = useAuthState(auth);
-  if (user) {
-    router.push("/");
-  }
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        // User is authenticated, push to home route
+        router.push("/");
+        console.log(authUser);
+      }
+    });
+
+    // Cleanup the listener on component unmount
+    return () => unsubscribe();
+  }, [router]);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -33,7 +42,6 @@ const SignUp = () => {
         setPassword("");
         setFirstName("");
         setLastName("");
-        router.push("/");
       } else {
         setIncorrect(true);
       }
@@ -46,7 +54,6 @@ const SignUp = () => {
   const handleGoogleSignUp = async () => {
     try {
       await signInWithGoogle();
-      router.push("/");
     } catch (error) {
       console.error(error);
     }

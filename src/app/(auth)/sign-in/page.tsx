@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   useSignInWithEmailAndPassword,
   useSignInWithGoogle,
@@ -12,9 +12,20 @@ import { useAuthState } from "react-firebase-hooks/auth";
 const SignIn = () => {
   const [user] = useAuthState(auth);
   const router = useRouter();
-  if (user) {
-    router.push("/");
-  }
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        // User is authenticated, push to home route
+        router.push("/");
+        console.log(authUser);
+      }
+    });
+
+    // Cleanup the listener on component unmount
+    return () => unsubscribe();
+  }, [router]);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
@@ -24,13 +35,7 @@ const SignIn = () => {
   const handleSignIn = async (e) => {
     e.preventDefault();
     try {
-      const res = await signInWithEmailAndPassword(email, password);
-      localStorage.setItem("user", JSON.stringify(user));
-      if (user.email) {
-        setEmail("");
-        setPassword("");
-        router.push("/");
-      }
+      await signInWithEmailAndPassword(email, password);
     } catch (e) {
       console.error(e);
       setIncorrect(true);
@@ -41,16 +46,16 @@ const SignIn = () => {
   const handleGoogleSignIn = async () => {
     try {
       await signInWithGoogle();
-      if (user?.email) {
-        setEmail("");
-        setPassword("");
-        router.push("/");
-      }
-      router.push("/");
     } catch (error) {
       console.error(error);
     }
   };
+  useEffect(() => {
+    // Update local storage when user changes
+    if (user) {
+      localStorage.setItem("user", JSON.stringify(user));
+    }
+  }, [user]);
 
   return (
     <div className="sign-box">
