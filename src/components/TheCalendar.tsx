@@ -167,6 +167,7 @@ export default function MyCalendar() {
         selectable={true}
         onSelectSlot={handleDayClick}
         onSelectEvent={handleEventClick}
+        longPressThreshold={10}
       />
       {hoverdEventData && <EventHoverDetails popupPosition={popupPosition} />}
     </div>
