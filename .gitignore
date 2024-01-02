@@ -37,10 +37,3 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-/src/firebaseConfig.js
-
-.next/cache
-.next/
-cache/
-out/
-/node_modules/.cache
