@@ -16,7 +16,6 @@ const SignUp = () => {
       if (authUser) {
         // User is authenticated, push to home route
         router.push("/");
-        console.log(authUser);
       }
     });
 
