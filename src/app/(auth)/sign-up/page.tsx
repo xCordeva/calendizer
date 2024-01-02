@@ -49,8 +49,10 @@ const SignUp = () => {
         setFirstName("");
         setLastName("");
 
-        await sendEmailVerification().catch((err) => console.log(err));
-        await updateProfile({ displayName }).catch((err) => console.log(err));
+        await Promise.all([
+          sendEmailVerification(),
+          updateProfile({ displayName }),
+        ]);
       } else {
         setIncorrect(true);
       }
