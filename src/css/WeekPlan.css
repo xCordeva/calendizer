@@ -44,7 +44,9 @@
   background-color: red;
 }
 .timeline .css-v6mo1y-MuiTimelineDot-root,
-.timeline .css-1ami7lv-MuiTimelineConnector-root {
+.timeline .css-1ami7lv-MuiTimelineConnector-root,
+.timeline .css-1nqcc1s,
+.timeline .css-idv8vo {
   background-color: #ff4200;
 }
 .timeline .css-55vwbm-MuiTimeline-root {
