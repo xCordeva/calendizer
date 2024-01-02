@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import {
   useCreateUserWithEmailAndPassword,
   useSignInWithGoogle,
+  useUpdateProfile,
+  useSendEmailVerification,
 } from "react-firebase-hooks/auth";
 import { auth } from "../../../firebase/firebaseConfig";
 import Link from "next/link";
@@ -29,18 +31,26 @@ const SignUp = () => {
   const [lastName, setLastName] = useState("");
   const [createUserWithEmailAndPassword] =
     useCreateUserWithEmailAndPassword(auth);
+  const [sendEmailVerification] = useSendEmailVerification(auth);
+  const [updateProfile] = useUpdateProfile(auth);
+
   const handleSignUp = async (e) => {
     e.preventDefault();
     try {
       const res = await createUserWithEmailAndPassword(email, password);
       // Check if res exists and has a user property
       if (res && res.user) {
-        res.user.displayName = `${firstName} ${lastName}`;
+        // Concatenate first name and last name to form display name
+        const displayName = `${firstName} ${lastName}`;
+
         // Success: User signed up
         setEmail("");
         setPassword("");
         setFirstName("");
         setLastName("");
+
+        await sendEmailVerification().catch((err) => console.log(err));
+        await updateProfile({ displayName }).catch((err) => console.log(err));
       } else {
         setIncorrect(true);
       }
